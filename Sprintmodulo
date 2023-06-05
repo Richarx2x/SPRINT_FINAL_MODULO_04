@@ -1,0 +1,562 @@
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+//Ingreso Interfaz
+interface Asesoria {
+    void analizarUsuario();
+}
+//definicion usuario
+class Usuario {
+    protected String nombre;
+    protected Date fechaNacimiento;
+    protected int run;
+
+    public Usuario() {}
+
+    public Usuario(String nombre, Date fechaNacimiento, int run) {
+        this.nombre = nombre;
+        this.fechaNacimiento = fechaNacimiento;
+        this.run = run;
+    }
+
+    // Métodos de acceso general
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public Date getFechaNacimiento() {
+        return fechaNacimiento;
+    }
+
+    public void setFechaNacimiento(Date fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
+    }
+
+    public int getRun() {
+        return run;
+    }
+
+    public void setRun(int run) {
+        this.run = run;
+    }
+
+    @Override
+    public String toString() {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        String fechaNacimientoStr = sdf.format(fechaNacimiento);
+        return "Nombre: " + nombre + "\nFecha de Nacimiento: " + fechaNacimientoStr + "\nRUN: " + run;
+    }
+}
+// tipo Cliente
+class Cliente extends Usuario {
+    private int rut;
+    private String nombres;
+    private String apellidos;
+    private String telefono;
+    private String afp;
+    private int sistemaSalud;
+    private String direccion;
+    private String comuna;
+    private int edad;
+
+    public Cliente() {}
+
+    public Cliente(String nombre, Date fechaNacimiento, int run, int rut, String nombres, String apellidos, String telefono, String afp, int sistemaSalud, String direccion, String comuna, int edad) {
+        super(nombre, fechaNacimiento, run);
+        this.rut = rut;
+        this.nombres = nombres;
+        this.apellidos = apellidos;
+        this.telefono = telefono;
+        this.afp = afp;
+        this.sistemaSalud = sistemaSalud;
+        this.direccion = direccion;
+        this.comuna = comuna;
+        this.edad = edad;
+    }
+
+    // Métodos de acceso para los atributos específicos de Cliente
+
+    public int getRut() {
+        return rut;
+    }
+
+    public void setRut(int rut) {
+        this.rut = rut;
+    }
+
+    public String getNombres() {
+        return nombres;
+    }
+
+    public void setNombres(String nombres) {
+        this.nombres = nombres;
+    }
+
+    public String getApellidos() {
+        return apellidos;
+    }
+
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    public String getAfp() {
+        return afp;
+    }
+
+    public void setAfp(String afp) {
+        this.afp = afp;
+    }
+
+    public int getSistemaSalud() {
+        return sistemaSalud;
+    }
+
+    public void setSistemaSalud(int sistemaSalud) {
+        this.sistemaSalud = sistemaSalud;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public String getComuna() {
+        return comuna;
+    }
+
+    public void setComuna(String comuna) {
+        this.comuna = comuna;
+    }
+
+    public int getEdad() {
+        return edad;
+    }
+
+    public void setEdad(int edad) {
+        this.edad = edad;
+    }
+
+    @Override
+    public String toString() {
+        String sistemaSaludStr = (sistemaSalud == 1) ? "Fonasa" : "Isapre";
+        return super.toString() + "\nRUT: " + rut + "\nNombres: " + nombres + "\nApellidos: " + apellidos + "\nTeléfono: " + telefono + "\nAFP: " + afp + "\nSistema de Salud: " + sistemaSaludStr + "\nDirección: " + direccion + "\nComuna: " + comuna + "\nEdad: " + edad;
+    }
+}
+//tipo profesional
+class Profesional extends Usuario {
+    private String titulo;
+    private Date fechaIngreso;
+
+    public Profesional() {}
+
+    public Profesional(String nombre, Date fechaNacimiento, int run, String titulo, Date fechaIngreso) {
+        super(nombre, fechaNacimiento, run);
+        this.titulo = titulo;
+        this.fechaIngreso = fechaIngreso;
+    }
+
+    // Métodos de acceso para los atributos específicos de Profesional
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
+    public Date getFechaIngreso() {
+        return fechaIngreso;
+    }
+
+    public void setFechaIngreso(Date fechaIngreso) {
+        this.fechaIngreso = fechaIngreso;
+    }
+
+    @Override
+    public String toString() {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        String fechaIngresoStr = sdf.format(fechaIngreso);
+        return super.toString() + "\nTítulo: " + titulo + "\nFecha de Ingreso: " + fechaIngresoStr;
+    }
+}
+// tipo administrativo
+class Administrativo extends Usuario {
+    private String area;
+    private String experienciaPrevia;
+
+    public Administrativo() {}
+
+    public Administrativo(String nombre, Date fechaNacimiento, int run, String area, String experienciaPrevia) {
+        super(nombre, fechaNacimiento, run);
+        this.area = area;
+        this.experienciaPrevia = experienciaPrevia;
+    }
+
+    // Métodos de acceso para los atributos específicos de Administrativo
+
+    public String getArea() {
+        return area;
+    }
+
+    public void setArea(String area) {
+        this.area = area;
+    }
+
+    public String getExperienciaPrevia() {
+        return experienciaPrevia;
+    }
+
+    public void setExperienciaPrevia(String experienciaPrevia) {
+        this.experienciaPrevia = experienciaPrevia;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + "\nÁrea: " + area + "\nExperiencia Previa: " + experienciaPrevia;
+    }
+}
+// Capacitacion
+class Capacitacion {
+    private int identificador;
+    private int rutCliente;
+    private String dia;
+    private String hora;
+    private String lugar;
+    private String duracion;
+    private int cantidadAsistentes;
+
+    public Capacitacion(int identificador, int rutCliente, String dia, String hora, String lugar, String duracion, int cantidadAsistentes) {
+        this.identificador = identificador;
+        this.rutCliente = rutCliente;
+        this.dia = dia;
+        this.hora = hora;
+        this.lugar = lugar;
+        this.duracion = duracion;
+        this.cantidadAsistentes = cantidadAsistentes;
+    }
+
+    // Métodos de acceso para los atributos de Capacitacion
+
+    public int getIdentificador() {
+        return identificador;
+    }
+
+    public void setIdentificador(int identificador) {
+        this.identificador = identificador;
+    }
+
+    public int getRutCliente() {
+        return rutCliente;
+    }
+
+    public void setRutCliente(int rutCliente) {
+        this.rutCliente = rutCliente;
+    }
+
+    public String getDia() {
+        return dia;
+    }
+
+    public void setDia(String dia) {
+        this.dia = dia;
+    }
+
+    public String getHora() {
+        return hora;
+    }
+
+    public void setHora(String hora) {
+        this.hora = hora;
+    }
+
+    public String getLugar() {
+        return lugar;
+    }
+
+    public void setLugar(String lugar) {
+        this.lugar = lugar;
+    }
+
+    public String getDuracion() {
+        return duracion;
+    }
+
+    public void setDuracion(String duracion) {
+        this.duracion = duracion;
+    }
+
+    public int getCantidadAsistentes() {
+        return cantidadAsistentes;
+    }
+
+    public void setCantidadAsistentes(int cantidadAsistentes) {
+        this.cantidadAsistentes = cantidadAsistentes;
+    }
+}
+// Accidente
+class Accidente {
+    private int identificador;
+    private int rutCliente;
+    private Date dia;
+    private String hora;
+    private String lugar;
+    private String origen;
+    private String consecuencias;
+
+    public Accidente(int identificador, int rutCliente, Date dia, String hora, String lugar, String origen, String consecuencias) {
+        this.identificador = identificador;
+        this.rutCliente = rutCliente;
+        this.dia = dia;
+        this.hora = hora;
+        this.lugar = lugar;
+        this.origen = origen;
+        this.consecuencias = consecuencias;
+    }
+
+    // Métodos de acceso para los atributos de Accidente
+
+    public int getIdentificador() {
+        return identificador;
+    }
+
+    public void setIdentificador(int identificador) {
+        this.identificador = identificador;
+    }
+
+    public int getRutCliente() {
+        return rutCliente;
+    }
+
+    public void setRutCliente(int rutCliente) {
+        this.rutCliente = rutCliente;
+    }
+
+    public Date getDia() {
+        return dia;
+    }
+
+    public void setDia(Date dia) {
+        this.dia = dia;
+    }
+
+    public String getHora() {
+        return hora;
+    }
+
+    public void setHora(String hora) {
+        this.hora = hora;
+    }
+
+    public String getLugar() {
+        return lugar;
+    }
+
+    public void setLugar(String lugar) {
+        this.lugar = lugar;
+    }
+
+    public String getOrigen() {
+        return origen;
+    }
+
+    public void setOrigen(String origen) {
+        this.origen = origen;
+    }
+
+    public String getConsecuencias() {
+        return consecuencias;
+    }
+
+    public void setConsecuencias(String consecuencias) {
+        this.consecuencias = consecuencias;
+    }
+}
+// Visita Terreno
+class VisitaTerreno {
+    private int identificador;
+    private int rutCliente;
+    private Date dia;
+    private String hora;
+    private String lugar;
+    private String comentarios;
+
+    public VisitaTerreno(int identificador, int rutCliente, Date dia, String hora, String lugar, String comentarios) {
+        this.identificador = identificador;
+        this.rutCliente = rutCliente;
+        this.dia = dia;
+        this.hora = hora;
+        this.lugar = lugar;
+        this.comentarios = comentarios;
+    }
+
+    // Métodos de acceso para los atributos de VisitaTerreno
+
+    public int getIdentificador() {
+        return identificador;
+    }
+
+    public void setIdentificador(int identificador) {
+        this.identificador = identificador;
+    }
+
+    public int getRutCliente() {
+        return rutCliente;
+    }
+
+    public void setRutCliente(int rutCliente) {
+        this.rutCliente = rutCliente;
+    }
+
+    public Date getDia() {
+        return dia;
+    }
+
+    public void setDia(Date dia) {
+        this.dia = dia;
+    }
+
+    public String getHora() {
+        return hora;
+    }
+
+    public void setHora(String hora) {
+        this.hora = hora;
+    }
+
+    public String getLugar() {
+        return lugar;
+    }
+
+    public void setLugar(String lugar) {
+        this.lugar = lugar;
+    }
+
+    public String getComentarios() {
+        return comentarios;
+    }
+
+    public void setComentarios(String comentarios) {
+        this.comentarios = comentarios;
+    }
+}
+
+//Main Class para comenzar el menu e invoicar codigo anterior
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        boolean salir = false;
+
+        while (!salir) {
+            System.out.println("\n--- Menú ---");
+            System.out.println("1. Crear cliente");
+            System.out.println("2. Crear profesional");
+            System.out.println("3. Crear capacitación");
+            System.out.println("4. Crear accidente");
+            System.out.println("5. Crear visita de terreno");
+            System.out.println("6. Salir");
+
+            System.out.print("Ingrese la opción que desea efectuar: ");
+            int opcion = scanner.nextInt();
+            scanner.nextLine(); // Para terminar el ciclo
+
+            switch (opcion) {
+                case 1:
+                    crearCliente(scanner);
+                    break;
+                case 2:
+                    crearProfesional(scanner);
+                    break;
+                case 3:
+                    crearCapacitacion(scanner);
+                    break;
+                case 4:
+                    crearAccidente(scanner);
+                    break;
+                case 5:
+                    crearVisitaTerreno(scanner);
+                    break;
+                case 6:
+                    salir = true;
+                    break;
+                default:
+                    System.out.println("Opción inválida. Por favor, ingrese una opción válida.");
+                    break;
+            }
+        }
+
+        System.out.println("Gracias por usar nuestro Sistema, hasta luego");
+    }
+
+    private static void crearCliente(Scanner scanner) {
+        System.out.println("--- Crear Cliente ---");
+
+        // Solicitar los datos del cliente al usuario y crear el objeto cliente
+
+        // Codigo para invocar el objeto
+
+        // Imprimir la información del cliente creado
+        System.out.println("Cliente creado correctamente.");
+    }
+
+    private static void crearProfesional(Scanner scanner) {
+        System.out.println("--- Crear Profesional ---");
+
+        // Solicitar los datos del profesional al usuario y crear el objeto profesional
+
+        // Codigo para invocar el objeto
+
+        // Imprimir la información del profesional creado
+        System.out.println("Profesional creado correctamente.");
+    }
+
+    private static void crearCapacitacion(Scanner scanner) {
+        System.out.println("--- Crear Capacitación ---");
+
+        // Solicitar los datos de la capacitación al usuario y crear el objeto capacitación
+
+        // Codigo para invocar el objeto
+
+        // Imprimir la información de la capacitación creada
+        System.out.println("Capacitación creada correctamente.");
+    }
+
+    private static void crearAccidente(Scanner scanner) {
+        System.out.println("--- Crear Accidente ---");
+
+        // Solicitar los datos del accidente al usuario y crear el objeto accidente
+
+        // Codigo para invocar el objeto
+
+        // Imprimir la información del accidente creado
+        System.out.println("Accidente creado correctamente.");
+    }
+
+    private static void crearVisitaTerreno(Scanner scanner) {
+        System.out.println("--- Crear Visita de Terreno ---");
+
+        // Solicitar los datos de la visita de terreno al usuario y crear el objeto visita de terreno
+
+        // Codigo para invocar el objeto
+
+        // Imprimir la información de la visita de terreno creada
+        System.out.println("Visita de terreno creada correctamente.");
+    }
+}
