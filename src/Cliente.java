@@ -16,8 +16,8 @@ class Cliente extends Usuario {
 
     public Cliente(String nombre, LocalDate fechaNacimiento, int run, int rut, String nombres, String apellidos, String telefono, String afp, int sistemaSalud, String direccion, String comuna, int edad) {
         super(nombre, fechaNacimiento, run);
-        this.rut = rut;
-        this.nombres = nombres;
+        this.rut = rut; // ya está el run en la clase padre
+        this.nombres = nombres; // se podria considerar el de la clase padre?
         this.apellidos = apellidos;
         this.telefono = telefono;
         this.afp = afp;
