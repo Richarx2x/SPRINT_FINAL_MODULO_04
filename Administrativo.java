@@ -36,12 +36,18 @@ class Administrativo extends Usuario {
         }
         this.area = area;
     }
+    public static boolean validarAreaVacia(String area) {
+        return area != null && !area.isEmpty();
+    }
 //Experiencia Previa
     public void setExperienciaPrevia(String experienciaPrevia) {
         if (experienciaPrevia.length() > 100) {
             throw new IllegalArgumentException("La experiencia previa no puede exceder los 100 caracteres.");
         }
         this.experienciaPrevia = experienciaPrevia;
+    }
+    public static boolean validarExperienciaPreviaVacio(String experienciaPrevia) {
+        return experienciaPrevia != null && !experienciaPrevia.isEmpty();
     }
 //===================================================================================
 class Administrativo extends Usuario implements Asesoria {

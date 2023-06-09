@@ -28,16 +28,19 @@ class Usuario implements Asesoria{
     }
     //Validadores
     //Formato Fecha
-    public class ValidadorFecha {
-        public static boolean validarFormatoFecha(String fecha) {
-            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-            sdf.setLenient(false);
-            try {
-                sdf.parse(fecha);
-                return true;
-            } catch (ParseException e) {
-                return false;
+        public class ValidadorFecha {
+            public static boolean validarFormatoFecha(String fecha) {
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                sdf.setLenient(false);
+                try {
+                    sdf.parse(fecha);
+                    return true;
+                } catch (ParseException e) {
+                    return false;
+                }
             }
+        public static boolean validarFechaVacia(String fechaNacimiento) {
+            return fechaNacimiento != null && !fechaNacimiento.isEmpty();
         }
     //Nombre
         public static boolean validarNombre(String nombre) {
@@ -51,12 +54,18 @@ class Usuario implements Asesoria{
             // El nombre es válido
             return true;
         }
+        public static boolean validarNombreVacio(String nombre) {
+            return nombre != null && !nombre.isEmpty();
+        }
     //RUN
         public void setRun(int run) {
             if (run < 0 || run > 99999999) {
                 throw new IllegalArgumentException("El RUN debe ser un número entre 0 y 99.999.999");
             }
             this.run = run;
+        }
+        public static boolean validarRun(String run) {
+            return run != null && !run.isEmpty();
         }
 //===================================================================================
     @Override

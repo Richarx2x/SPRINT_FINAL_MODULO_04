@@ -46,6 +46,9 @@ class Profesional extends Usuario {
                 return false;
             }
         }
+    public static boolean validarFechaVacia(String fechaIngreso) {
+        return fechaIngreso != null && !fechaIngreso.isEmpty();
+    }
 //Titulo
     public boolean validarTitulo() {
         if (titulo != null && titulo.length() >= 10 && titulo.length() <= 50) {
@@ -53,6 +56,9 @@ class Profesional extends Usuario {
         } else {
             return false;
         }
+    }
+    public static boolean validarTituloVacio(String titulo) {
+        return titulo != null && !titulo.isEmpty();
     }
 //===================================================================================
     @Override
