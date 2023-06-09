@@ -1,13 +1,18 @@
+import com.sun.istack.internal.NotNull;
+
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.regex.Pattern;
 
 public class Capacitacion {
     private int idCapacitacion;
+    @NotNull
     private Cliente RUTCliente;
     private String dia;
     private String hora;
     private String lugar;
+    @NotNull
     private int duracion;
     private int cantidadAsistentes;
 
@@ -16,7 +21,7 @@ public class Capacitacion {
         this.idCapacitacion = idCapacitacion();
     }
 
-    public Capacitacion(int idCapacitacion, int RUTCliente, String dia, String hora, String lugar, int duracion, int cantidadAsistentes) {
+    public Capacitacion(int idCapacitacion, int RUTCliente, String dia, String hora, String lugar, int duracion, int cantidadAsistentes) throws Exception{
       this();
         this.RUTCliente = RUTCliente;
         if(comprobarDia(dia)){
@@ -26,10 +31,11 @@ public class Capacitacion {
         if (comprobarFormatoHora(hora)){
             this.hora = hora;
         }
-
-        if(comprobarLugar(lugar)){
-            this.lugar = lugar;
+        if(lugar.length()>10 && lugar.length()<50){
+            throw new Exception("Rango no válido");
         }
+            this.lugar = lugar;
+
         if(comprobarDuracion(duracion)){
             this.duracion = duracion;
         }
@@ -78,11 +84,10 @@ public class Capacitacion {
         return lugar;
     }
 
-    public void setLugar(String lugar) {
-        if(comprobarLugar(lugar)){
+    public void setLugar(String lugar)throws Exception {
+        if(lugar.length()>10 && lugar.length()<50)
+            throw new Exception("Rango no válido");
             this.lugar = lugar;
-        }
-
     }
 
     public int getDuracion() {
@@ -93,11 +98,12 @@ public class Capacitacion {
         if(comprobarDuracion(duracion)){
             this.duracion = duracion;
         }else {
-            System.out.println("Ingrese hora fomrato hh:mm");
+            System.out.println("Ingrese hora formato hh:mm");
         }
     }
 
     public int getCantidadAsistentes() {
+
         return cantidadAsistentes;
     }
 
