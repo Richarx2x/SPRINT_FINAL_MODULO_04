@@ -32,7 +32,7 @@ public class Validaciones {
     }
 
     // VALIDADOR SISTEMA DE SALUD: 1 FONASA, 2 ISAPRE
-    public static boolean validarSistemaSalud(int sistemaSalud) {
+    public static int validarSistemaSalud(int sistemaSalud) {
         return sistemaSalud == 1 || sistemaSalud == 2;
     }
 
@@ -101,6 +101,7 @@ public class Validaciones {
     }
 
     // ----------------------------------------------------------------------------------
+    // opcional:
     // GENERAMOS ID ALEATORIO
     private int generaId(){
         return (int) (Math.random() * 89999999) + 10000000;

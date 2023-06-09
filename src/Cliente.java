@@ -3,7 +3,7 @@ import java.time.LocalDate;
 import java.util.regex.Pattern;
 
 //import java.time.LocalTime;
-class Cliente extends Usuario {
+class Cliente extends Usuario implements Asesoria {
 
     // Declaración de variables
     private int rut;
@@ -195,7 +195,7 @@ class Cliente extends Usuario {
     }
 
     // VALIDADOR SISTEMA DE SALUD: 1 FONASA, 2 ISAPRE
-    public static boolean validarSistemaSalud(int sistemaSalud) {
+    public static int validarSistemaSalud(int sistemaSalud) {
         return sistemaSalud == 1 || sistemaSalud == 2;
     }
 
@@ -218,16 +218,34 @@ class Cliente extends Usuario {
 
     @Override
     public void analizarUsuario() {
-        System.out.println("Analizando al cliente: " + getNombre());
+        System.out.println("Analizando al cliente: " + getRun() + "" + getNombre() + ", quien vive en " + getDireccion()
+        + getComuna());
     }
 
-    public void obtenerNombre() {
-
+    public String obtenerNombre() {
+        String nombreCompleto;
+        nombreCompleto = "nombre completo: " + getNombres() + " " + getApellidos();
+        return nombreCompleto;
     }
 
-    public void obtenerSistemaSalud(){
 
+    public String obtenerSistemaSalud() {
+        String reconoceSistemaSalud;
+        if (Validaciones.validarSistemaSalud(sistemaSalud) == 1) {
+            reconoceSistemaSalud = "Fonasa";
+            return reconoceSistemaSalud;
+        } else if (Validaciones.validarSistemaSalud(sistemaSalud) == 2) {
+            reconoceSistemaSalud = "Isapre";
+            return reconoceSistemaSalud;
+        } else {
+            reconoceSistemaSalud = "No se reconoce sistema de salud";
+            return reconoceSistemaSalud;
+        }
     }
+
+
+
+
     @Override
     public String toString() {
         return super.toString() + "\n" +
