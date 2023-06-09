@@ -17,7 +17,12 @@ class Accidente {
     public Accidente(int identificador, int rutCliente, String dia, String hora, String lugar, String origen, String consecuencias) {
         this.identificador = identificador;
         this.rutCliente = rutCliente;
-        if (validarFormatoFecha(dia)){
+        this.dia = dia;
+        this.hora = hora;
+        this.lugar = lugar;
+        this.origen = origen;
+        this.consecuencias = consecuencias;
+/*        if (validarFormatoFecha(dia)){
             this.dia = dia;
         } else {System.out.println("No se reconoce la fecha ingresada");}
         if (validarFormatoHora(hora)) {
@@ -31,7 +36,7 @@ class Accidente {
         } else {System.out.println("No se reconoce el origen del accidente ingresado");}
         if (validarLongitudConsecuencias(consecuencias)) {
             this.consecuencias = consecuencias;
-        } else {System.out.println("No se reconocen las consecuencias ingresadas");}
+        } else {System.out.println("No se reconocen las consecuencias ingresadas");}*/
     }
 
     // Métodos de acceso para los atributos de Accidente
@@ -42,6 +47,9 @@ class Accidente {
 
     public void setIdentificador(int identificador) {
         this.identificador = identificador;
+/*        if (validarIdentificador(identificador)) {
+            this.identificador = identificador;
+        } else {System.out.println("Ingresa bien el ID. Identificador ingresado no es correcto");}*/
     }
 
     public int getRutCliente() {
@@ -50,6 +58,9 @@ class Accidente {
 
     public void setRutCliente(int rutCliente) {
         this.rutCliente = rutCliente;
+/*        if (validarRutAccidente(rut)) {
+            this.rutCliente = rutCliente;
+        } else {System.out.println("Ingresa bien el RUT. RUT ingresado no es correcto");}*/
     }
 
     public String getDia() {
@@ -57,10 +68,10 @@ class Accidente {
     }
 
     public void setDia(String dia) {
-        //this.dia = dia;
-        if (validarFormatoFecha(dia)){
+        this.dia = dia;
+/*        if (validarFormatoFecha(dia)){
             this.dia = dia;
-        } else {System.out.println("Ingresa bien la fecha compañero/a");}
+        } else {System.out.println("Ingresa bien la fecha: Formato DD/MM/AAAA");}*/
     }
 
     public String getHora() {
@@ -68,10 +79,10 @@ class Accidente {
     }
 
     public void setHora(String hora) {
-        // this.hora = hora;
-        if (validarFormatoHora(hora)){
+        this.hora = hora;
+/*        if (validarFormatoHora(hora)){
             this.hora = hora;
-        } else {System.out.println("Ingresa bien la hora compañero/a");}
+        } else {System.out.println("Ingresa bien la hora: Formato HH:MM");}*/
     }
 
     public String getLugar() {
@@ -79,10 +90,10 @@ class Accidente {
     }
 
     public void setLugar(String lugar) {
-        // this.lugar = lugar;
-        if (validarLongitudLugar(lugar)){
+        this.lugar = lugar;
+/*        if (validarLongitudLugar(lugar)){
             this.lugar = lugar;
-        } else {System.out.println("Ingresa bien el lugar del accidente. Min 10 caracteres, Max 50 caracteres");}
+        } else {System.out.println("Ingresa bien el lugar del accidente. Min 10 caracteres, Max 50 caracteres");}*/
     }
 
     public String getOrigen() {
@@ -90,10 +101,10 @@ class Accidente {
     }
 
     public void setOrigen(String origen) {
-        // this.origen = origen;
-        if (validarLongitudOrigen(origen)){
+        this.origen = origen;
+/*        if (validarLongitudOrigen(origen)){
             this.origen = origen;
-        } else {System.out.println("Ingresa bien el origen del accidente. Max 100 caracteres caracteres permitidos");}
+        } else {System.out.println("Ingresa bien el origen del accidente. Max 100 caracteres caracteres permitidos");}*/
     }
 
     public String getConsecuencias() {
@@ -101,10 +112,25 @@ class Accidente {
     }
 
     public void setConsecuencias(String consecuencias) {
-        // this.consecuencias = consecuencias;
-        if (validarLongitudConsecuencias(consecuencias)) {
+        this.consecuencias = consecuencias;
+/*        if (validarLongitudConsecuencias(consecuencias)) {
             this.consecuencias = consecuencias;
-        } else {System.out.println("Ingresa bien las consecuencias del accidente. Max 100 caracteres permitidos");}
+        } else {System.out.println("Ingresa bien las consecuencias del accidente. Max 100 caracteres permitidos");}*/
+    }
+
+    // VALIDADORES CLASS ACCIDENTE:
+/*    // VALIDADOR IDENTIFICADOR (ID)
+    public static boolean validarIdentificador(int identificador) {
+        String identificadorStr = Integer.toString(identificador);
+        String patron = "^[0-9]{1,}$";
+        return Pattern.matches(patron, identificadorStr);
+    }
+
+    // VALIDADOR RUT
+    public static boolean validarRutAccidente(int rut) {
+        String rutStr = Integer.toString(rut);
+        String patron = "^[0-9]{1,}$";
+        return Pattern.matches(patron, rutStr);
     }
 
     // VALIDADOR HORA
@@ -137,10 +163,29 @@ class Accidente {
         return consecuencias.length() <= longitudMaxima;
     }
 
+    // ----------------------------------------------------------------------------------
     // GENERAMOS ID
     private int generaId(){
         return (int) (Math.random() * 89999999) + 10000000;
+    }*/
+
+    // toString:
+    @Override
+    public String toString() {
+        return "Accidente{" +
+                "identificador=" + identificador +
+                ", rutCliente=" + rutCliente +
+                ", dia='" + dia + '\'' +
+                ", hora='" + hora + '\'' +
+                ", lugar='" + lugar + '\'' +
+                ", origen='" + origen + '\'' +
+                ", consecuencias='" + consecuencias + '\'' +
+                '}';
     }
 
+    //ANALIZAR USUARIO:
+    @Override
+    public void analizarUsuario(){
 
+    }
 }
