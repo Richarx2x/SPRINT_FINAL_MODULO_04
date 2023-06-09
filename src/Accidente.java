@@ -183,9 +183,4 @@ class Accidente {
                 '}';
     }
 
-    //ANALIZAR USUARIO:
-    @Override
-    public void analizarUsuario(){
-
-    }
 }

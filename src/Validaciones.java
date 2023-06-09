@@ -4,7 +4,7 @@ public class Validaciones {
     // VALIDADORES CLASS CLIENTE:
     // VALIDADOR RUT: VALORES ENTRE 0 Y 99999999
     public static boolean validarRut(int rut) {
-        return rut >= 0 && rut <= 99999999;
+        return rut > 0 && rut <= 99999999;
     }
 
     // VALIDADOR LONGITUD STRING NOMBRES: MIN 5 MAX 30
@@ -32,7 +32,7 @@ public class Validaciones {
     }
 
     // VALIDADOR SISTEMA DE SALUD: 1 FONASA, 2 ISAPRE
-    public static int validarSistemaSalud(int sistemaSalud) {
+    public static boolean validarSistemaSalud(int sistemaSalud) {
         return sistemaSalud == 1 || sistemaSalud == 2;
     }
 

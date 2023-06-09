@@ -231,10 +231,10 @@ class Cliente extends Usuario implements Asesoria {
 
     public String obtenerSistemaSalud() {
         String reconoceSistemaSalud;
-        if (Validaciones.validarSistemaSalud(sistemaSalud) == 1) {
+        if (Validaciones.validarSistemaSalud(sistemaSalud)) {
             reconoceSistemaSalud = "Fonasa";
             return reconoceSistemaSalud;
-        } else if (Validaciones.validarSistemaSalud(sistemaSalud) == 2) {
+        } else if (!Validaciones.validarSistemaSalud(sistemaSalud)) {
             reconoceSistemaSalud = "Isapre";
             return reconoceSistemaSalud;
         } else {
@@ -242,6 +242,7 @@ class Cliente extends Usuario implements Asesoria {
             return reconoceSistemaSalud;
         }
     }
+
 
 
 
