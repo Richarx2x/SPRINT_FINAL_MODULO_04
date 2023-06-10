@@ -113,8 +113,8 @@ class Contenedor {
     private List<Capacitacion> capacitaciones;
 
     public Contenedor() {
-        asesorias = new ArrayList<>();
-        capacitaciones = new ArrayList<>();
+        this.asesorias = new ArrayList<>();
+        this.capacitaciones = new ArrayList<>();
     }
 
     public void almacenarCliente(Cliente cliente) {
@@ -133,49 +133,17 @@ class Contenedor {
         capacitaciones.add(capacitacion);
     }
 
-    public void eliminarUsuario(int run) {
-        for (Asesoria asesoria : asesorias) {
-            if (asesoria instanceof Usuario && ((Usuario) asesoria).getRun() == run) {
-                asesorias.remove(asesoria);
-                break;
-            }
-        }
-    }
-
-    public void listarUsuarios() {
-        for (Asesoria asesoria : asesorias) {
-            if (asesoria instanceof Usuario) {
-                System.out.println(((Usuario) asesoria).toString());
-                System.out.println("--------------------");
-            }
-        }
-    }
-
-    public void listarUsuariosPorTipo(String tipo) {
+    public void eliminarUsuario(int RUN) {
         for (Asesoria asesoria : asesorias) {
             if (asesoria instanceof Usuario) {
                 Usuario usuario = (Usuario) asesoria;
-                if (tipo.equalsIgnoreCase("cliente") && usuario instanceof Cliente) {
-                    System.out.println(usuario.toString());
-                    System.out.println("--------------------");
-                } else if (tipo.equalsIgnoreCase("administrativo") && usuario instanceof Administrativo) {
-                    System.out.println(usuario.toString());
-                    System.out.println("--------------------");
-                } else if (tipo.equalsIgnoreCase("profesional") && usuario instanceof Profesional) {
-                    System.out.println(usuario.toString());
-                    System.out.println("--------------------");
+                if (usuario.getRUN() == RUN) {
+                    asesorias.remove(asesoria);
+                    break;
                 }
             }
         }
     }
-
-    public void listarCapacitaciones() {
-        for (Capacitacion capacitacion : capacitaciones) {
-            System.out.println(capacitacion.toString());
-            System.out.println("--------------------");
-        }
-    }
-}
 
 public class Principal {
     public static void main(String[] args) {
