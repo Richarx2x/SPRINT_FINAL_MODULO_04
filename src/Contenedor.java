@@ -1,11 +1,14 @@
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
 class Contenedor {
     private List<Asesoria> asesorias;
     private List<Capacitacion> capacitaciones;
 
     public Contenedor() {
-        asesorias = new ArrayList<>();
-        capacitaciones = new ArrayList<>();
+        this.asesorias = new ArrayList<>();
+        this.capacitaciones = new ArrayList<>();
     }
 
     public void almacenarCliente(Cliente cliente) {
@@ -24,11 +27,14 @@ class Contenedor {
         capacitaciones.add(capacitacion);
     }
 
-    public void eliminarUsuario(int run) {
+    public void eliminarUsuario(int RUN) {
         for (Asesoria asesoria : asesorias) {
-            if (asesoria instanceof Usuario && ((Usuario) asesoria).getRun() == run) {
-                asesorias.remove(asesoria);
-                break;
+            if (asesoria instanceof Usuario) {
+                Usuario usuario = (Usuario) asesoria;
+                if (usuario.getRUN() == RUN) {
+                    asesorias.remove(asesoria);
+                    break;
+                }
             }
         }
     }
@@ -36,34 +42,23 @@ class Contenedor {
     public void listarUsuarios() {
         for (Asesoria asesoria : asesorias) {
             if (asesoria instanceof Usuario) {
-                System.out.println(((Usuario) asesoria).toString());
-                System.out.println("--------------------");
-            }
-        }
-    }
-
-    public void listarUsuariosPorTipo(String tipo) {
-        for (Asesoria asesoria : asesorias) {
-            if (asesoria instanceof Usuario) {
                 Usuario usuario = (Usuario) asesoria;
-                if (tipo.equalsIgnoreCase("cliente") && usuario instanceof Cliente) {
-                    System.out.println(usuario.toString());
-                    System.out.println("--------------------");
-                } else if (tipo.equalsIgnoreCase("administrativo") && usuario instanceof Administrativo) {
-                    System.out.println(usuario.toString());
-                    System.out.println("--------------------");
-                } else if (tipo.equalsIgnoreCase("profesional") && usuario instanceof Profesional) {
-                    System.out.println(usuario.toString());
-                    System.out.println("--------------------");
-                }
+                usuario.mostrarEdad();
             }
         }
     }
 
-    public void listarCapacitaciones() {
+    public void mostrarCapacitaciones() {
         for (Capacitacion capacitacion : capacitaciones) {
-            System.out.println(capacitacion.toString());
-            System.out.println("--------------------");
+            capacitacion.mostrarDetalle();
+        }
+    }
+
+    public void mostrarUsuarios() {
+        for (Asesoria asesoria : asesorias) {
+            asesoria.analizarUsuario();
         }
     }
 }
+
+

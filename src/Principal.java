@@ -1,5 +1,83 @@
-
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
+
+public class Principal {
+    public static void main(String[] args) {
+        Contenedor contenedor = new Contenedor();
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Ingrese los datos del cliente:");
+        System.out.print("Nombre: ");
+        String nombre = scanner.nextLine();
+        System.out.print("Fecha de nacimiento: ");
+        String fechaNacimiento = scanner.nextLine();
+        System.out.print("RUN: ");
+        int run = scanner.nextInt();
+        scanner.nextLine();
+        System.out.print("RUT: ");
+        int rut = scanner.nextInt();
+        scanner.nextLine();
+        System.out.print("Nombres: ");
+        String nombres = scanner.nextLine();
+        System.out.print("Apellidos: ");
+        String apellidos = scanner.nextLine();
+        System.out.print("Teléfono: ");
+        String telefono = scanner.nextLine();
+        System.out.print("AFP: ");
+        String afp = scanner.nextLine();
+        System.out.print("Sistema de salud (1: Fonasa, 2: Isapre): ");
+        int sistemaSalud = scanner.nextInt();
+        scanner.nextLine();
+        System.out.print("Dirección: ");
+        String direccion = scanner.nextLine();
+        System.out.print("Comuna: ");
+        String comuna = scanner.nextLine();
+
+        Cliente cliente = new Cliente(nombre, fechaNacimiento, run, rut, nombres, apellidos, telefono, afp, sistemaSalud,
+                direccion, comuna);
+
+        System.out.println("\nIngrese los datos del profesional:");
+        System.out.print("Nombre: ");
+        nombre = scanner.nextLine();
+        System.out.print("Fecha de nacimiento: ");
+        fechaNacimiento = scanner.nextLine();
+        System.out.print("RUN: ");
+        run = scanner.nextInt();
+        scanner.nextLine();
+        System.out.print("Título: ");
+        String titulo = scanner.nextLine();
+        System.out.print("Fecha de ingreso: ");
+        String fechaIngreso = scanner.nextLine();
+
+        Profesional profesional = new Profesional(nombre, fechaNacimiento, run, titulo, fechaIngreso);
+
+        System.out.println("\nIngrese los datos del administrativo:");
+        System.out.print("Nombre: ");
+        nombre = scanner.nextLine();
+        System.out.print("Fecha de nacimiento: ");
+        fechaNacimiento = scanner.nextLine();
+        System.out.print("RUN: ");
+        run = scanner.nextInt();
+        scanner.nextLine();
+        System.out.print("Área: ");
+        String area = scanner.nextLine();
+        System.out.print("Experiencia previa: ");
+        String experienciaPrevia = scanner.nextLine();
+
+        Administrativo administrativo = new Administrativo(nombre, fechaNacimiento, run, area, experienciaPrevia);
+
+        contenedor.almacenarCliente(cliente);
+        contenedor.almacenarProfesional(profesional);
+        contenedor.almacenarAdministrativo(administrativo);
+
+        contenedor.mostrarUsuarios();
+    }
+}
+
+// ------------------------------ PRINCIPAL ANTERIOR (COMENTADO) ------------------------------------
+
+/*
 public class Principal {
     public static void main(String[] args) {
         Contenedor contenedor = new Contenedor();
@@ -24,28 +102,28 @@ public class Principal {
 
             switch (opcion) {
                 case 1:
-                    crearCliente(contenedor, scanner);
+                    crearCliente(Contenedor, scanner);
                     break;
                 case 2:
-                    //crearProfesional(contenedor, scanner);
+                    crearProfesional(contenedor, scanner);
                     break;
                 case 3:
-                    //crearAdministrativo(contenedor, scanner);
+                    crearAdministrativo(contenedor, scanner);
                     break;
                 case 4:
-                    //crearCapacitacion(contenedor, scanner);
+                    crearCapacitacion(contenedor, scanner);
                     break;
                 case 5:
-                    //eliminarUsuario(contenedor, scanner);
+                    eliminarUsuario(contenedor, scanner);
                     break;
                 case 6:
-                    //contenedor.listarUsuarios();
+                    contenedor.listarUsuarios();
                     break;
                 case 7:
-                    //listarUsuariosPorTipo(contenedor, scanner);
+                    listarUsuariosPorTipo(contenedor, scanner);
                     break;
                 case 8:
-                    //contenedor.listarCapacitaciones();
+                    contenedor.listarCapacitaciones();
                     break;
                 case 9:
                     salir = true;
@@ -89,14 +167,14 @@ public class Principal {
         String comuna = leeS ("Ingresa la comuna del cliente");
         int edad = leeE ("Ingresa la edad del cliente");
 
-        Cliente cliente = new Cliente(rut, nombres, apellidos, telefono, afp, sistemaSalud, direccion, comuna, edad);
+        Cliente cliente = new Cliente (rut, nombres, apellidos, telefono, afp, sistemaSalud, direccion, comuna, edad);
 
         // Asignar los valores correspondientes a los atributos del cliente
-        contenedor.almacenarCliente(cliente);
+        Contenedor almacenarCliente(cliente);
         System.out.println("Cliente almacenado exitosamente.");
     }
 
-   /* private static void crearProfesional(Contenedor contenedor, Scanner scanner) {
+    private static void crearProfesional(Contenedor contenedor, Scanner scanner) {
         // Lógica para solicitar los datos del profesional al usuario
         // y crear un objeto de la clase Profesional
         Profesional profesional = new Profesional();
@@ -137,5 +215,6 @@ public class Principal {
         String tipo = scanner.nextLine();
 
         contenedor.listarUsuariosPorTipo(tipo);
-    }*/
-}
+    }
+
+}*/

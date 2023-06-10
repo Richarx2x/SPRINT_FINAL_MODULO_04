@@ -1,0 +1,3 @@
+interface Asesoria {
+    void analizarUsuario();
+}
