@@ -28,20 +28,20 @@ class Usuario implements Asesoria{
     }
     //Validadores
     //Formato Fecha
-        public class ValidadorFecha {
-            public static boolean validarFormatoFecha(String fecha) {
-                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-                sdf.setLenient(false);
-                try {
-                    sdf.parse(fecha);
-                    return true;
-                } catch (ParseException e) {
-                    return false;
-                }
-            }
-        public static boolean validarFechaVacia(String fechaNacimiento) {
-            return fechaNacimiento != null && !fechaNacimiento.isEmpty();
+        
+    public static boolean validarFormatoFecha(String fecha) {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        sdf.setLenient(false);
+        try {
+            sdf.parse(fecha);
+            return true;
+        } catch (ParseException e) {
+            return false;
         }
+    }
+    public static boolean validarFechaVacia(String fechaNacimiento) {
+        return fechaNacimiento != null && !fechaNacimiento.isEmpty();
+
     //Nombre
         public static boolean validarNombre(String nombre) {
             int longitudMinima = 10;
