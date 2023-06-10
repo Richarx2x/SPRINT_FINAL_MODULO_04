@@ -51,17 +51,5 @@ class Administrativo extends Usuario {
         return experienciaPrevia != null && !experienciaPrevia.isEmpty();
     }
 //===================================================================================
-class Administrativo extends Usuario implements Asesoria {
-    private String area;
-    private String experienciaPrevia;
-    @Override
-    public void analizarUsuario() {
-        System.out.println("Analizando al administrativo: " + getNombre());
-    }
-    @Override
-    public String toString() {
-        return super.toString() + "\n" +
-                "Área: " + area + "\n" +
-                "Experiencia previa: " + experienciaPrevia;
-    }
+
 }

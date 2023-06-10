@@ -34,18 +34,17 @@ class Profesional extends Usuario {
 
 //Validadores
 //Formato Fecha
-    public class ValidadorFecha {
-        public static boolean validarFormatoFecha(String fecha) {
-            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-            sdf.setLenient(false);
 
-            try {
-                sdf.parse(fecha);
-                return true;
-            } catch (ParseException e) {
-                return false;
-            }
+    public static boolean validarFormatoFecha(String fecha) {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        sdf.setLenient(false);
+        try {
+            sdf.parse(fecha);
+            return true;
+        } catch (ParseException e) {
+            return false;
         }
+
     public static boolean validarFechaVacia(String fechaIngreso) {
         return fechaIngreso != null && !fechaIngreso.isEmpty();
     }
@@ -69,21 +68,5 @@ class Profesional extends Usuario {
     }
 }
 //===================================================================================
-class Profesional extends Usuario implements Asesoria {
-    private String titulo;
-    private String fechaIngreso;
 
-
-    @Override
-    public void analizarUsuario() {
-        System.out.println("Analizando al profesional: " + getNombre());
-        // Lógica específica para analizar a un profesional
-    }
-
-    @Override
-    public String toString() {
-        return super.toString() + "\n" +
-                "Título: " + titulo + "\n" +
-                "Fecha de ingreso: " + fechaIngreso;
-    }
 }
