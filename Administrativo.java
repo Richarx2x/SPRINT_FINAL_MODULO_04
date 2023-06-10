@@ -33,7 +33,7 @@ class Administrativo extends Usuario {
         if (validarArea(area)) {
             this.area = area;
         } else {
-            System.out.println("Error: El área debe tener entre 5 y 20 caracteres.");
+            System.out.println("ERROR!! EL ÁREA DEBE TENER UN MÍNIMO DE 5 Y UN MÁXIMO DE 20 CARÁCTERES");
         }
         this.area = area;
     }
@@ -43,7 +43,7 @@ class Administrativo extends Usuario {
 //Experiencia Previa
     public void setExperienciaPrevia(String experienciaPrevia) {
         if (experienciaPrevia.length() > 100) {
-            throw new IllegalArgumentException("La experiencia previa no puede exceder los 100 caracteres.");
+            throw new IllegalArgumentException("HA EXCEDIO EL MÁXIMO DE CARÁCTERES PERMITIDOS!");
         }
         this.experienciaPrevia = experienciaPrevia;
     }

@@ -46,12 +46,10 @@ class Usuario implements Asesoria{
         public static boolean validarNombre(String nombre) {
             int longitudMinima = 10;
             int longitudMaxima = 50;
-            // Verificar la longitud del nombre
             int longitud = nombre.length();
             if (longitud < longitudMinima || longitud > longitudMaxima) {
                 return false;
             }
-            // El nombre es válido
             return true;
         }
         public static boolean validarNombreVacio(String nombre) {
@@ -60,7 +58,7 @@ class Usuario implements Asesoria{
     //RUN
         public void setRun(int run) {
             if (run < 0 || run > 99999999) {
-                throw new IllegalArgumentException("El RUN debe ser un número entre 0 y 99.999.999");
+                throw new IllegalArgumentException("ERROR!! EL RUN DEBE SER ENTRE 0 Y 99999999!");
             }
             this.run = run;
         }
