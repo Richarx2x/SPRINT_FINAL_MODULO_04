@@ -3,7 +3,7 @@ import java.time.LocalDate;
 import java.util.regex.Pattern;
 
 //import java.time.LocalTime;
-class Cliente extends Usuario implements Asesoria {
+class Cliente extends Usuario {
 
     // Declaración de variables
     private int rut;

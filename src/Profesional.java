@@ -44,6 +44,7 @@ class Profesional extends Usuario {
         } catch (ParseException e) {
             return false;
         }
+    }
 
         public static boolean validarFechaVacia(String fechaIngreso) {
             return fechaIngreso != null && !fechaIngreso.isEmpty();
@@ -69,4 +70,3 @@ class Profesional extends Usuario {
     }
 //===================================================================================
 
-}
