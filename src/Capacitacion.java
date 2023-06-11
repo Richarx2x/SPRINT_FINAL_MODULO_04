@@ -1,18 +1,11 @@
-import com.sun.istack.internal.NotNull;
-
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.util.regex.Pattern;
-
 public class Capacitacion {
     private int idCapacitacion;
-    @NotNull
+
     private Cliente RUTCliente;
     private String dia;
     private String hora;
     private String lugar;
-    @NotNull
     private int duracion;
     private int cantidadAsistentes;
 
@@ -21,7 +14,7 @@ public class Capacitacion {
         this.idCapacitacion = idCapacitacion();
     }
 
-    public Capacitacion(int idCapacitacion, int RUTCliente, String dia, String hora, String lugar, int duracion, int cantidadAsistentes) throws Exception{
+    public Capacitacion(int idCapacitacion, Cliente RUTCliente, String dia, String hora, String lugar, int duracion, int cantidadAsistentes) throws Exception{
       this();
         this.RUTCliente = RUTCliente;
         if(comprobarDia(dia)){
@@ -43,11 +36,9 @@ public class Capacitacion {
         this.cantidadAsistentes = cantidadAsistentes;
     }
     public int getIdCapacitacion(){
-
         return idCapacitacion;
     }
     private int idCapacitacion(){
-
         return (int)(Math.random()*100+1);
     }
     public Cliente getRUTCliente() {
@@ -55,7 +46,7 @@ public class Capacitacion {
     }
 
     public void setRUTCliente(Cliente RUTCliente) {
-        this.RUTCliente = RUTCliente;
+        this.RUTCliente = new Cliente();
     }
 
     public String getDia() {
@@ -84,9 +75,8 @@ public class Capacitacion {
         return lugar;
     }
 
-    public void setLugar(String lugar)throws Exception {
+    public void setLugar(String lugar){
         if(lugar.length()>10 && lugar.length()<50)
-            throw new Exception("Rango no válido");
             this.lugar = lugar;
     }
 
@@ -97,8 +87,6 @@ public class Capacitacion {
     public void setDuracion(int duracion) {
         if(comprobarDuracion(duracion)){
             this.duracion = duracion;
-        }else {
-            System.out.println("Ingrese hora formato hh:mm");
         }
     }
 
@@ -114,7 +102,7 @@ public class Capacitacion {
 
     }
      public String mostrarDetalle(){
-        return "La capacitacion será en: "+ this.getLugar()+ " a las "+ this.getHora()+ " del día "+this.getDia()+", y durará  "+this.getDuracion()+"  minutos.";
+        return "La capacitacion será en: "+ getLugar()+ " a las "+ getHora()+ " del día "+getDia()+", y durará  "+getDuracion()+"  minutos.";
      }
 
     /**
