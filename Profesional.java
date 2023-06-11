@@ -15,7 +15,7 @@ class Profesional extends Usuario {
         this.titulo = titulo;
         this.fechaIngreso = fechaIngreso;
     }
-
+//Accesadores y mutadores
     public String getTitulo() {
         return titulo;
     }
@@ -38,12 +38,8 @@ class Profesional extends Usuario {
     public static boolean validarFormatoFecha(String fecha) {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         sdf.setLenient(false);
-        try {
-            sdf.parse(fecha);
-            return true;
-        } catch (ParseException e) {
-            return false;
-        }
+        return fecha.matches("\\d{2}/\\d{2}/\\d{4}") && sdf.format(sdf.parse(fecha)).equals(fecha);
+    }
 
     public static boolean validarFechaVacia(String fechaIngreso) {
         return fechaIngreso != null && !fechaIngreso.isEmpty();

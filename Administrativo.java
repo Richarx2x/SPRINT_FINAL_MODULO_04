@@ -12,12 +12,21 @@ class Administrativo extends Usuario {
         this.area = area;
         this.experienciaPrevia = experienciaPrevia;
     }
-    // Métodos de acceso para los atributos específicos de Administrativo
+//Accesadores y mutadores
     public String getArea() {
         return area;
     }
     public String getExperienciaPrevia() {
         return experienciaPrevia;
+
+    public void setArea(String area) {
+         this.area = area;
+     }
+    public void setExperienciaPrevia(String experienciaPrevia) {
+         this.experienciaPrevia = experienciaPrevia;
+    }
+
+//Métodos personalizados
     @Override
     public String toString() {
         return super.toString() + "\nÁrea: " + area + "\nExperiencia Previa: " + experienciaPrevia;
@@ -29,23 +38,21 @@ class Administrativo extends Usuario {
         int longitud = area.length();
         return longitud >= 5 && longitud <= 20;
     }
-    public void setArea(String area) {
-        if (validarArea(area)) {
-            this.area = area;
-        } else {
-            System.out.println("ERROR!! EL ÁREA DEBE TENER UN MÍNIMO DE 5 Y UN MÁXIMO DE 20 CARÁCTERES");
-        }
-        this.area = area;
-    }
     public static boolean validarAreaVacia(String area) {
         return area != null && !area.isEmpty();
     }
-//Experiencia Previa
-    public void setExperienciaPrevia(String experienciaPrevia) {
-        if (experienciaPrevia.length() > 100) {
-            throw new IllegalArgumentException("HA EXCEDIO EL MÁXIMO DE CARÁCTERES PERMITIDOS!");
+    public static boolean validarArea(String area) {
+        if (area == null || area.length() < 5 || area.length() > 20) {
+            return false;
         }
-        this.experienciaPrevia = experienciaPrevia;
+        return true;
+    }
+//Experiencia Previa
+    public static boolean validarExperienciaPrevia(String experienciaPrevia) {
+        if (experienciaPrevia == null || experienciaPrevia.length() > 100) {
+            return false;
+        }
+        return true;
     }
     public static boolean validarExperienciaPreviaVacio(String experienciaPrevia) {
         return experienciaPrevia != null && !experienciaPrevia.isEmpty();
@@ -53,3 +60,15 @@ class Administrativo extends Usuario {
 //===================================================================================
 
 }
+
+
+/*
+
+
+public void setExperienciaPrevia(String experienciaPrevia) {
+        if (experienciaPrevia.length() > 100) {
+            throw new IllegalArgumentException("HA EXCEDIO EL MÁXIMO DE CARÁCTERES PERMITIDOS!");
+        }
+        this.experienciaPrevia = experienciaPrevia;
+    }
+    */

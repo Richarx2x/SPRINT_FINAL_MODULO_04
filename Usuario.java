@@ -8,6 +8,7 @@ class Usuario implements Asesoria{
     private String nombre;
     private String fechaNacimiento;
     private int run;
+//Accesadores y mutadores
     public String getNombre() {
         return nombre;
     }
@@ -23,12 +24,19 @@ class Usuario implements Asesoria{
     public int getRun() {
         return run;
     }
+    public void setRun(int run) {
+        this.run = run;
+    }
+    public static boolean validarRun(String run) {
+        return run != null && !run.isEmpty();
+    }
+//Metétodos personalizados
     public void analizarUsuario() {
         System.out.println("Analizando al cliente: " + getNombre());
     }
-    //Validadores
-    //Formato Fecha
-        
+//Validadores
+//Formato Fecha
+
     public static boolean validarFormatoFecha(String fecha) {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         sdf.setLenient(false);
@@ -42,7 +50,7 @@ class Usuario implements Asesoria{
     public static boolean validarFechaVacia(String fechaNacimiento) {
         return fechaNacimiento != null && !fechaNacimiento.isEmpty();
 
-    //Nombre
+//Nombre
         public static boolean validarNombre(String nombre) {
             int longitudMinima = 10;
             int longitudMaxima = 50;
@@ -55,15 +63,12 @@ class Usuario implements Asesoria{
         public static boolean validarNombreVacio(String nombre) {
             return nombre != null && !nombre.isEmpty();
         }
-    //RUN
-        public void setRun(int run) {
-            if (run < 0 || run > 99999999) {
-                throw new IllegalArgumentException("ERROR!! EL RUN DEBE SER ENTRE 0 Y 99999999!");
-            }
-            this.run = run;
+//RUN
+        public static boolean validarRun(int run) {
+            return run > 0 && run < 99999999;
         }
-        public static boolean validarRun(String run) {
-            return run != null && !run.isEmpty();
+        public static boolean validarRunVacio(String run) {
+            return run != null && !nombre.isEmpty();
         }
 //===================================================================================
     @Override
@@ -73,3 +78,14 @@ class Usuario implements Asesoria{
                 "RUN: " + run;
     }
 }
+/*
+public void setRun(int run) {
+            if (run < 0 || run > 99999999) {
+                throw new IllegalArgumentException("ERROR!! EL RUN DEBE SER ENTRE 0 Y 99999999!");
+            }
+            this.run = run;
+        }
+        public static boolean validarRun(String run) {
+            return run != null && !run.isEmpty();
+        }
+*/
