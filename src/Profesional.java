@@ -1,17 +1,16 @@
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
-class Profesional extends Usuario {
+public class Profesional extends Usuario {
     private String titulo;
     private String fechaIngreso;
 
-    public Profesional() {}
+    public Profesional() {
+        super();
+    }
 
-    public Profesional(String nombre, String fechaNacimiento, int run, String titulo, String fechaIngreso) {
-        super(nombre, fechaNacimiento, run);
+    public Profesional(String nombre, String fechaNacimiento, int rut, String titulo, String fechaIngreso) {
+        super(nombre, fechaNacimiento, rut);
         this.titulo = titulo;
         this.fechaIngreso = fechaIngreso;
     }
@@ -32,12 +31,12 @@ class Profesional extends Usuario {
         this.fechaIngreso = fechaIngreso;
     }
 
-//Validadores
-//Formato Fecha
+    //Validadores
 
     public static boolean validarFormatoFecha(String fecha) {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         sdf.setLenient(false);
+
         try {
             sdf.parse(fecha);
             return true;
@@ -46,27 +45,44 @@ class Profesional extends Usuario {
         }
     }
 
-        public static boolean validarFechaVacia(String fechaIngreso) {
-            return fechaIngreso != null && !fechaIngreso.isEmpty();
+    public static boolean validarFechaVacia(String fechaIngreso) {
+        return fechaIngreso != null && !fechaIngreso.isEmpty();
+    }
+
+    //Titulo
+    public boolean validarTitulo() {
+        if (titulo != null && titulo.length() >= 10 && titulo.length() <= 50) {
+            return true;
+        } else {
+            return false;
         }
-//Titulo
-        public boolean validarTitulo() {
-            if (titulo != null && titulo.length() >= 10 && titulo.length() <= 50) {
-                return true;
-            } else {
-                return false;
-            }
-        }
-        public static boolean validarTituloVacio(String titulo) {
-            return titulo != null && !titulo.isEmpty();
-        }
-//===================================================================================
-        @Override
+    }
+
+    public static boolean validarTituloVacio(String titulo) {
+        return titulo != null && !titulo.isEmpty();
+    }
+    //===================================================================================
+       /* @Override
         public String toString() {
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
             String fechaIngresoStr = sdf.format(fechaIngreso);
             return super.toString() + "\nTítulo: " + titulo + "\nFecha de Ingreso: " + fechaIngresoStr;
         }
-    }
-//===================================================================================
+*/
+    //===================================================================================
 
+
+    @Override
+    public void analizarUsuario() {
+        super.analizarUsuario();
+        System.out.println("Analizando Título Profesional: " + getTitulo()+"  Fecha Ingreso: "+getFechaIngreso());
+        // Lógica específica para analizar a un profesional
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + "\n" +
+                "Título: " + titulo + "\n" +
+                "Fecha de ingreso: " + fechaIngreso;
+    }
+}

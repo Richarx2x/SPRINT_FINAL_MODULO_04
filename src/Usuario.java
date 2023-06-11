@@ -1,14 +1,12 @@
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
-class Usuario implements Asesoria {
+public class Usuario implements Asesoria {
     private String nombre;
     private String fechaNacimiento;
     private int run;
 
+    // constructor
     public Usuario() {
     }
 
@@ -39,7 +37,7 @@ class Usuario implements Asesoria {
     }
 
     public void analizarUsuario() {
-        System.out.println("Analizando al cliente: " + getNombre());
+        System.out.println("Nombre Usuario: " + getNombre());
     }
     //Validadores
     //Formato Fecha
@@ -59,36 +57,45 @@ class Usuario implements Asesoria {
         return fechaNacimiento != null && !fechaNacimiento.isEmpty();
     }
 
-        //Nombre
-        public static boolean validarNombre (String nombre){
-            int longitudMinima = 10;
-            int longitudMaxima = 50;
-            int longitud = nombre.length();
-            if (longitud < longitudMinima || longitud > longitudMaxima) {
-                return false;
-            }
-            return true;
+    //Nombre
+    public static boolean validarNombre(String nombre) {
+        int longitudMinima = 10;
+        int longitudMaxima = 50;
+        int longitud = nombre.length();
+        if (longitud < longitudMinima || longitud > longitudMaxima) {
+            return false;
         }
-        public static boolean validarNombreVacio (String nombre){
-            return nombre != null && !nombre.isEmpty();
-        }
-        //RUN
-        public void setRun ( int run){
-            if (run < 0 || run > 99999999) {
-                throw new IllegalArgumentException("ERROR!! EL RUN DEBE SER ENTRE 0 Y 99999999!");
-            }
-            this.run = run;
-        }
-        public static boolean validarRun (String run){
-            return run != null && !run.isEmpty();
-        }
-//===================================================================================
-        @Override
-        public String toString () {
-            return "Nombre: " + nombre + "\n" +
-                    "Fecha de nacimiento: " + fechaNacimiento + "\n" +
-                    "RUN: " + run;
-        }
+        return true;
+    }
+        /* public void setNombres(String nombres) {
+        this.nombres = nombres;
+/*        if (validarNombres(nombres)) {
+            this.nombres = nombres;
+        } else {System.out.println("Ingresa bien los nombres. Utiliza un total mínimo de 5 caracteres y máximo de 30 caracteres");}*/
+
+    public static boolean validarNombreVacio(String nombre) {
+        return nombre != null && !nombre.isEmpty();
     }
 
+    //RUN
+    public void setRun(int run) {
+        /*        if (validarRut(int rut)) {
+            this.rut = rut;
+        } else {System.out.println("Ingresa bien el RUT. Utiliza número menor a 99999999");}*/
+        if (run < 0 || run > 99999999) {
+            throw new IllegalArgumentException("ERROR!! EL RUN DEBE SER ENTRE 0 Y 99999999!");
+        }
+        this.run = run;
+    }
 
+    public static boolean validarRun(String run) {
+        return run != null && !run.isEmpty();
+    }
+    //===================================================================================
+
+    public String toString() {
+        return "Nombre: " + nombre + "\n" +
+                "Fecha de nacimiento: " + fechaNacimiento + "\n" +
+                "RUN: " + run;
+    }
+}

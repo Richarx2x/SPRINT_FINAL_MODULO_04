@@ -1,8 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
-class Contenedor {
+public class Contenedor {
     private List<Asesoria> asesorias;
     private List<Capacitacion> capacitaciones;
 
@@ -31,7 +30,7 @@ class Contenedor {
         for (Asesoria asesoria : asesorias) {
             if (asesoria instanceof Usuario) {
                 Usuario usuario = (Usuario) asesoria;
-                if (usuario.getRUN() == RUN) {
+                if (usuario.getRun() == RUN) {
                     asesorias.remove(asesoria);
                     break;
                 }
@@ -43,7 +42,7 @@ class Contenedor {
         for (Asesoria asesoria : asesorias) {
             if (asesoria instanceof Usuario) {
                 Usuario usuario = (Usuario) asesoria;
-                usuario.mostrarEdad();
+                usuario.analizarUsuario();
             }
         }
     }
@@ -60,5 +59,3 @@ class Contenedor {
         }
     }
 }
-
-

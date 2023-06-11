@@ -1,13 +1,9 @@
-//import java.util.Date;
 import java.time.LocalDate;
 import java.util.regex.Pattern;
 
-//import java.time.LocalTime;
-class Cliente extends Usuario {
-
+public class Cliente extends Usuario {
     // Declaración de variables
     private int rut;
-    private String nombres;
     private String apellidos;
     private int telefono;
     private String afp;
@@ -17,12 +13,14 @@ class Cliente extends Usuario {
     private int edad;
 
     // Constructor vacio
-    public Cliente() {}
+    public Cliente() {
+        super();
+    }
+
     // Constructor con objetos clase padre + objetos propios
-    public Cliente(String nombre, String fechaNacimiento, int run, int rut, String nombres, String apellidos, int telefono, String afp, int sistemaSalud, String direccion, String comuna, int edad) {
+    public Cliente(String nombre, String fechaNacimiento, int run,int rut, String apellidos, int telefono, String afp, int sistemaSalud, String direccion, String comuna, int edad) {
         super(nombre, fechaNacimiento, run);
         this.rut = rut;
-        this.nombres = nombres;
         this.apellidos = apellidos;
         this.telefono = telefono;
         this.afp = afp;
@@ -63,21 +61,8 @@ class Cliente extends Usuario {
 
     public void setRut(int rut) {
         this.rut = rut;
-/*        if (validarRut(int rut)) {
-            this.rut = rut;
-        } else {System.out.println("Ingresa bien el RUT. Utiliza número menor a 99999999");}*/
     }
 
-    public String getNombres() {
-        return nombres;
-    }
-
-    public void setNombres(String nombres) {
-        this.nombres = nombres;
-/*        if (validarNombres(nombres)) {
-            this.nombres = nombres;
-        } else {System.out.println("Ingresa bien los nombres. Utiliza un total mínimo de 5 caracteres y máximo de 30 caracteres");}*/
-    }
     public String getApellidos() {
         return apellidos;
     }
@@ -169,48 +154,40 @@ class Cliente extends Usuario {
     public static boolean validarRut(int rut) {
         return rut >= 0 && rut <= 99999999;
     }
-
     // VALIDADOR LONGITUD STRING NOMBRES: MIN 5 MAX 30
     public static boolean validarNombres(String nombres) {
         return nombres.length() >= 5 && nombres.length() <= 30;
     }
-
    // VALIDADOR LONGITUD STRING APELLIDOS: MIN 5, MAX 30
     public static boolean validarLongitudApellidos(String apellidos) {
         String patron = "^.{5,30}$";
         return Pattern.matches(patron, apellidos);
     }
-
     // VALIDADOR TELÉFONO
     public static boolean validarTelefono(int telefono) {
         String telefonoStr = Integer.toString(telefono);
         String patron = "^[0-9]{1,}$";
         return Pattern.matches(patron, telefonoStr);
     }
-
     // VALIDADOR LONGITUD STRING AFP: MIN 4, MAX 30
     public static boolean validarLongitudAfp(String afp) {
         String patron = "^.{4,30}$";
         return Pattern.matches(patron, afp);
     }
-
     // VALIDADOR SISTEMA DE SALUD: 1 FONASA, 2 ISAPRE
     public static int validarSistemaSalud(int sistemaSalud) {
         return sistemaSalud == 1 || sistemaSalud == 2;
     }
-
     // VALIDADOR DIRECCION: MAX 70
     public static boolean validarLongitudDireccion(String direccion) {
         int longitudMaxima = 70;
         return direccion.length() <= longitudMaxima;
     }
-
     // VALIDADOR COMUNA: MAX 50
     public static boolean validarLongitudComuna(String comuna) {
         int longitudMaxima = 50;
         return comuna.length() <= longitudMaxima;
     }
-
     // VALIDADOR EDAD: 0 <= edad < 150
     public static boolean validarEdad(int edad) {
         return edad >= 0 && edad < 150;
@@ -218,13 +195,13 @@ class Cliente extends Usuario {
 
     @Override
     public void analizarUsuario() {
-        System.out.println("Analizando al cliente: " + getRun() + "" + getNombre() + ", quien vive en " + getDireccion()
-        + getComuna());
+        System.out.println("Analizando al cliente: " + getRut() + "" + getNombre() + ", quien vive en " + getDireccion()
+                + getComuna());
     }
 
     public String obtenerNombre() {
         String nombreCompleto;
-        nombreCompleto = "nombre completo: " + getNombres() + " " + getApellidos();
+        nombreCompleto = "nombre completo: " + getNombre() + " " + getApellidos();
         return nombreCompleto;
     }
 
@@ -244,9 +221,6 @@ class Cliente extends Usuario {
     }
 
 
-
-
-
     @Override
     public String toString() {
         return super.toString() + "\n" +
@@ -258,5 +232,4 @@ class Cliente extends Usuario {
                 "Comuna: " + comuna + "\n" +
                 "Edad: " + edad;
     }
-
 }

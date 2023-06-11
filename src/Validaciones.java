@@ -1,6 +1,5 @@
 import java.util.regex.Pattern;
 public class Validaciones {
-
     // VALIDADORES CLASS CLIENTE:
     // VALIDADOR RUT: VALORES ENTRE 0 Y 99999999
     public static boolean validarRut(int rut) {

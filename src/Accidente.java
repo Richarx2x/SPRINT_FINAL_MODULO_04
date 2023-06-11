@@ -1,12 +1,11 @@
-//import java.util.Date;
 import java.time.LocalDate;
 //import java.time.LocalTime;
 import java.util.regex.Pattern;
 import java.text.SimpleDateFormat;
 import java.text.ParseException;
-class Accidente {
+public class Accidente {
     private int identificador;
-    private int rutCliente;
+    private Cliente rutCliente;
     private String dia;
     private String hora;
     private String lugar;
@@ -14,7 +13,7 @@ class Accidente {
     private String consecuencias;
 
 
-    public Accidente(int identificador, int rutCliente, String dia, String hora, String lugar, String origen, String consecuencias) {
+    public Accidente(int identificador, Cliente rutCliente, String dia, String hora, String lugar, String origen, String consecuencias) {
         this.identificador = identificador;
         this.rutCliente = rutCliente;
         this.dia = dia;
@@ -52,11 +51,11 @@ class Accidente {
         } else {System.out.println("Ingresa bien el ID. Identificador ingresado no es correcto");}*/
     }
 
-    public int getRutCliente() {
+    public Cliente getRutCliente() {
         return rutCliente;
     }
 
-    public void setRutCliente(int rutCliente) {
+    public void setRutCliente(Cliente rutCliente) {
         this.rutCliente = rutCliente;
 /*        if (validarRutAccidente(rut)) {
             this.rutCliente = rutCliente;
@@ -125,44 +124,37 @@ class Accidente {
         String patron = "^[0-9]{1,}$";
         return Pattern.matches(patron, identificadorStr);
     }
-
     // VALIDADOR RUT
     public static boolean validarRutAccidente(int rut) {
         String rutStr = Integer.toString(rut);
         String patron = "^[0-9]{1,}$";
         return Pattern.matches(patron, rutStr);
     }
-
     // VALIDADOR HORA
     public static boolean validarFormatoHora(String hora) {
         String patron = "^([01]?\\d|2[0-3]):[0-5]\\d$";
         return Pattern.matches(patron, hora);
     }
-
     // VALIDADOR FECHA
     public static boolean validarFormatoFecha(String dia) {
         String patron = "^(0[1-9]|1\\d|2\\d|3[01])/(0[1-9]|1[0-2])/\\d{4}$";
         return Pattern.matches(patron, dia);
     }
-
     // VALIDADOR LONGITUD STRING LUGAR: MIN 10, MAX 50
     public static boolean validarLongitudLugar(String lugar) {
         String patron = "^.{10,50}$";
         return Pattern.matches(patron, lugar);
     }
-
     // VALIDADOR LONGITUD STRING ORIGEN: MAX 100
     public static boolean validarLongitudOrigen(String origen) {
         int longitudMaxima = 100;
         return origen.length() <= longitudMaxima;
     }
-
     // VALIDADOR LONGITUD STRING CONSECUENCIAS: MAX 100
     public static boolean validarLongitudConsecuencias(String consecuencias) {
         int longitudMaxima = 100;
         return consecuencias.length() <= longitudMaxima;
     }
-
     // ----------------------------------------------------------------------------------
     // GENERAMOS ID
     private int generaId(){

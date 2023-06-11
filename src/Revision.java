@@ -1,19 +1,14 @@
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-import java.util.regex.Pattern;
-import java.util.regex.Matcher;
 public class Revision {
-    private int revision;
-    private int identificadorVisita;
+    private int idRevision;
+    private VisitaTerreno idVisitaTerreno;
     private String nombre;
     private String detalle_revision;
     private String estado;
 
 
-    public void revision(int revision, int identificador, String nombre, String detalle_revision, String estado){
-        this.revision = revision;
-        this.identificadorVisita = identificador;
+    public void revision(int idRevision, VisitaTerreno idVisitaTerreno, String nombre, String detalle_revision, String estado) {
+        this.idRevision = idRevision;
+        this.idVisitaTerreno = idVisitaTerreno;
         this.nombre = nombre;
         this.detalle_revision = detalle_revision;
         this.estado = estado;
@@ -21,41 +16,21 @@ public class Revision {
 
 
     public int getRevision() {
-        return revision;
+        return idRevision;
     }
 
-    public void setRevision(int revision) {
-        this.revision = revision;
+    public void setRevision(int idRevision) {
+        this.idRevision = idRevision;
     }
 
-    public int getIdentificadorVisita() {
-        return identificadorVisita;
+    public VisitaTerreno getIdVisitaTerreno() {
+        return idVisitaTerreno;
     }
 
-    public void setIdentificador(int identificadorVisita) {
-        this.identificadorVisita = identificadorVisita;
+    public void setIdentificador(VisitaTerreno idVisitaTerreno) {
+        this.idVisitaTerreno = idVisitaTerreno;
     }
 
-    // validador identificador Visita
-
-    public static void identificadorVisita(int identificadorVisita){
-        Scanner scanner = new Scanner(System.in);
-        while (true){
-            // se solicitaria el rut del cliente al usuario
-            //System.out.print("Ingrese el identificador de visita: ");
-            //       identificadorVisita = scanner.nextInt();
-            //luego se realiza la validacion dentro del bucle//
-            if (identificadorVisita > 0 ){
-                // si la validacion es correcta, sale del bucle//
-                System.out.println("identificador de visita valido: " + identificadorVisita);
-                break;
-            } else {
-                //si las condiciones no se cumplen arrojara error
-                System.out.println("campo obligatorio e ingrese identificador de visita correctamente , intente nuevamente ");
-                return;
-            }
-        }
-    }
     public String getNombre() {
         return nombre;
     }
@@ -66,14 +41,11 @@ public class Revision {
 
     // validador de nombre
 
-    public static void nombre(String nombre){
-        if (nombre != null && nombre.length() >= 10 && nombre.length() <= 50){
-            // con este metodo se deja claro las condiciones de la validacion
-            // si no se cumple las condiciones se arrojara error
-        }else {
-            System.out.println("Campo obligatorio,minimo de 10 a 50 caracteres ");
-
-        } return;
+    public boolean nombre(String nombre) {
+        if (nombre != null && nombre.length() >= 10 && nombre.length() <= 50) {
+            return true;
+        }
+        return false;
     }
 
     public String getDetalle_revision() {
@@ -86,19 +58,13 @@ public class Revision {
 
     // validador detalle revision
 
-    public static void validarDetalle(String detalle_revision) {
-        Scanner scanner = new Scanner(System.in);
-        // se ingresa los detalles para la revision
-        //System.out.println("Ingrese el detalle (máximo 100 caracteres): ");
-        detalle_revision = scanner.nextLine();
+    public boolean validarDetalle(String detalle_revision) {
         if (detalle_revision.length() > 100) {
-            // si detalle supera los 100 caracteres arrojara error
-            System.out.println("El detalle excede el límite de 100 caracteres.intente nuevamente");
-            detalle_revision = detalle_revision.substring(0,100);
+            return true;
         }
-
-
+        return false;
     }
+
     public String getEstado() {
         return estado;
     }
@@ -106,23 +72,13 @@ public class Revision {
     public void setEstado(String estado) {
         this.estado = estado;
     }
-    // validar estador
+    // validar estado
 
-    public static void estado(String estado){
-        Scanner scanner = new Scanner(System.in);
-        // se ingresa las opciones disponibles
-        while (true) {
-            //System.out.println("Ingrese el estado (1: sin problemas, 2: con observaciones, 3: no aprueba): ");
-            estado = scanner.nextLine();
-            if (estado.equals("1") || estado.equals("2") || estado.equals("3")) {
-                break;
-                //si estado no cumple con los requisitos de validacion arrojara error
-            } else {
-                System.out.println("Estado inválido. Intente nuevamente.");
-            }
+    public boolean estado(String estado) {
+        if (estado.equals("1") || estado.equals("2") || estado.equals("3")) {
+            return true;
         }
-
-        System.out.println("Estado válido: " + estado);
+        return false;
     }
 
 }
