@@ -1,4 +1,7 @@
-class Contenedor {
+import java.util.ArrayList;
+import java.util.List;
+
+public class Contenedor {
     private List<Asesoria> asesorias;
     private List<Capacitacion> capacitaciones;
 
@@ -27,7 +30,7 @@ class Contenedor {
         for (Asesoria asesoria : asesorias) {
             if (asesoria instanceof Usuario) {
                 Usuario usuario = (Usuario) asesoria;
-                if (usuario.getRUN() == RUN) {
+                if (usuario.getRun() == RUN) {
                     asesorias.remove(asesoria);
                     break;
                 }
@@ -39,7 +42,7 @@ class Contenedor {
         for (Asesoria asesoria : asesorias) {
             if (asesoria instanceof Usuario) {
                 Usuario usuario = (Usuario) asesoria;
-                usuario.mostrarEdad();
+                usuario.analizarUsuario();
             }
         }
     }
@@ -47,6 +50,7 @@ class Contenedor {
     public void mostrarCapacitaciones() {
         for (Capacitacion capacitacion : capacitaciones) {
             capacitacion.mostrarDetalle();
+
         }
     }
 
@@ -55,77 +59,18 @@ class Contenedor {
             asesoria.analizarUsuario();
         }
     }
-}
+    public  boolean buscarRut(int RUN) {
+        boolean existe= false;
+        //List<Asesoria> asesorias = new ArrayList<>();
+        for (Asesoria asesoria : asesorias) {
+            if (asesoria instanceof Cliente) {
+                Cliente ccl = (Cliente) asesoria;
+                if (ccl.getRun() == RUN) {
+                    return existe = true;
+                }
+            }
+        }
 
-public class Main {
-    public static void main(String[] args) {
-        Contenedor contenedor = new Contenedor();
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.println("Ingrese los datos del cliente:");
-        System.out.print("Nombre: ");
-        String nombre = scanner.nextLine();
-        System.out.print("Fecha de nacimiento: ");
-        String fechaNacimiento = scanner.nextLine();
-        System.out.print("RUN: ");
-        int run = scanner.nextInt();
-        scanner.nextLine();
-        System.out.print("RUT: ");
-        int rut = scanner.nextInt();
-        scanner.nextLine();
-        System.out.print("Nombres: ");
-        String nombres = scanner.nextLine();
-        System.out.print("Apellidos: ");
-        String apellidos = scanner.nextLine();
-        System.out.print("Teléfono: ");
-        String telefono = scanner.nextLine();
-        System.out.print("AFP: ");
-        String afp = scanner.nextLine();
-        System.out.print("Sistema de salud (1: Fonasa, 2: Isapre): ");
-        int sistemaSalud = scanner.nextInt();
-        scanner.nextLine();
-        System.out.print("Dirección: ");
-        String direccion = scanner.nextLine();
-        System.out.print("Comuna: ");
-        String comuna = scanner.nextLine();
-
-        Cliente cliente = new Cliente(nombre, fechaNacimiento, run, rut, nombres, apellidos, telefono, afp, sistemaSalud,
-                direccion, comuna);
-
-        System.out.println("\nIngrese los datos del profesional:");
-        System.out.print("Nombre: ");
-        nombre = scanner.nextLine();
-        System.out.print("Fecha de nacimiento: ");
-        fechaNacimiento = scanner.nextLine();
-        System.out.print("RUN: ");
-        run = scanner.nextInt();
-        scanner.nextLine();
-        System.out.print("Título: ");
-        String titulo = scanner.nextLine();
-        System.out.print("Fecha de ingreso: ");
-        String fechaIngreso = scanner.nextLine();
-
-        Profesional profesional = new Profesional(nombre, fechaNacimiento, run, titulo, fechaIngreso);
-
-        System.out.println("\nIngrese los datos del administrativo:");
-        System.out.print("Nombre: ");
-        nombre = scanner.nextLine();
-        System.out.print("Fecha de nacimiento: ");
-        fechaNacimiento = scanner.nextLine();
-        System.out.print("RUN: ");
-        run = scanner.nextInt();
-        scanner.nextLine();
-        System.out.print("Área: ");
-        String area = scanner.nextLine();
-        System.out.print("Experiencia previa: ");
-        String experienciaPrevia = scanner.nextLine();
-
-        Administrativo administrativo = new Administrativo(nombre, fechaNacimiento, run, area, experienciaPrevia);
-
-        contenedor.almacenarCliente(cliente);
-        contenedor.almacenarProfesional(profesional);
-        contenedor.almacenarAdministrativo(administrativo);
-
-        contenedor.mostrarUsuarios();
+        return existe;
     }
 }

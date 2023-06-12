@@ -254,8 +254,7 @@ public class Main {
                             break;
                         }
                     }while(true);
-                    System.out.print("Área: ");
-                    String area = scanner.nextLine();
+                 
                     System.out.print("Experiencia previa: ");
                     String experienciaPrevia = scanner.nextLine();
 
