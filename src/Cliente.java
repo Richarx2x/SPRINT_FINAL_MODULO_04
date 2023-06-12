@@ -150,7 +150,7 @@ public class Cliente extends Usuario {
     }
 
     // VALIDADORES CLASS CLIENTE:
-/*  // VALIDADOR RUT: VALORES ENTRE 0 Y 99999999
+    // VALIDADOR RUT: VALORES ENTRE 0 Y 99999999
     public static boolean validarRut(int rut) {
         return rut >= 0 && rut <= 99999999;
     }
@@ -175,7 +175,7 @@ public class Cliente extends Usuario {
         return Pattern.matches(patron, afp);
     }
     // VALIDADOR SISTEMA DE SALUD: 1 FONASA, 2 ISAPRE
-    public static int validarSistemaSalud(int sistemaSalud) {
+    public static boolean validarSistemaSalud(int sistemaSalud) {
         return sistemaSalud == 1 || sistemaSalud == 2;
     }
     // VALIDADOR DIRECCION: MAX 70
@@ -191,7 +191,7 @@ public class Cliente extends Usuario {
     // VALIDADOR EDAD: 0 <= edad < 150
     public static boolean validarEdad(int edad) {
         return edad >= 0 && edad < 150;
-    }*/
+    }
 
     @Override
     public void analizarUsuario() {
