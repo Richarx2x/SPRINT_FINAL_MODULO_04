@@ -208,10 +208,10 @@ public class Cliente extends Usuario {
 
     public String obtenerSistemaSalud() {
         String reconoceSistemaSalud;
-        if (Validaciones.validarSistemaSalud(sistemaSalud)) {
+        if (validarSistemaSalud(sistemaSalud)) {
             reconoceSistemaSalud = "Fonasa";
             return reconoceSistemaSalud;
-        } else if (!Validaciones.validarSistemaSalud(sistemaSalud)) {
+        } else if (!validarSistemaSalud(sistemaSalud)) {
             reconoceSistemaSalud = "Isapre";
             return reconoceSistemaSalud;
         } else {
