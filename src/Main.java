@@ -135,10 +135,11 @@ public class Main {
                     } else {
                         scanner.nextLine();
                         String dia;
+
                         do {
                             System.out.print("Día: ");
                             dia = scanner.nextLine();
-                            if (!Capacitacion.comprobarDia(dia)) {
+                            if (!Capacitacion.validarDiaSemana(dia)) {
                                 System.out.println(" Ingrese dia váido lunes,martes,miercoles, jueves,viernes,sabado,domingo");
                             }
                         } while (!Capacitacion.comprobarDia(dia));

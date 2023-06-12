@@ -57,9 +57,9 @@ public class Capacitacion {
     }
 
     public void setDia(String dia) {
-        if (comprobarDia(dia)) {
-            this.dia = dia;
-        }
+
+        this.dia = dia;
+
 
     }
 
@@ -68,10 +68,7 @@ public class Capacitacion {
     }
 
     public void setHora(String hora) {
-        if (comprobarFormatoHora(hora)) {
-            this.hora = hora;
-        }
-
+        this.hora = hora;
     }
 
     public String getLugar() {
@@ -88,9 +85,9 @@ public class Capacitacion {
     }
 
     public void setDuracion(int duracion) {
-        if (comprobarDuracion(duracion)) {
-            this.duracion = duracion;
-        }
+
+        this.duracion = duracion;
+
     }
 
     public int getCantidadAsistentes() {
@@ -109,12 +106,13 @@ public class Capacitacion {
         return "La capacitacion será en: " + this.getLugar() + " a las " + this.getHora() + " del día " + this.getDia() + ", y durará  " + this.getDuracion() + "  minutos.";
     }
 
-    public static boolean comprobarCantidadAsistentes(int cantidadAsistentes){
+    public static boolean comprobarCantidadAsistentes(int cantidadAsistentes) {
         if (cantidadAsistentes > 0 && cantidadAsistentes < 1000) {
             return true;
         }
         return false;
     }
+
     /**
      * comprueba que el día ingresado sea correcto
      *
@@ -131,18 +129,24 @@ public class Capacitacion {
         }
         return false;
     }
-/*public static boolean comprobarDato(String dia){
-        if (dia.matches("[A-Z]*")){
-            return true;
+
+    public static boolean validarDiaSemana(String dia) {
+        String[] diasValidos = {"lunes", "martes", "miercoles", "jueves", "viernes", "sabado", "domingo"};
+        for (String diaValido : diasValidos) {
+            if (diaValido.equalsIgnoreCase(dia)) {
+                return true;
+            }
         }
-    return false;
-}*/
+        return false;
+    }
+
     /**
      * comprueba el largo mínimo y máximo de caracteres
      *
      * @param lugar
      * @return
      */
+
     public static boolean comprobarLugar(String lugar) {
         if (lugar.length() > 10 && lugar.length() < 50) {
             return true;
