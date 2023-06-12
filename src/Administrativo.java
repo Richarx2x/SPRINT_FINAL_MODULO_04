@@ -34,7 +34,7 @@ public class Administrativo extends Usuario {
 
     //Validadores
 //Area
-    private boolean validarArea(String area) {
+    public static boolean validarArea(String area) {
         int longitud = area.length();
         return longitud >= 5 && longitud <= 20;
     }

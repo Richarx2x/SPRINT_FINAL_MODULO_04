@@ -243,6 +243,17 @@ public class Main {
                     System.out.print("RUN: ");
                     int runn = scanner.nextInt();
                     scanner.nextLine();
+                    String area;
+                    do{
+                        System.out.print("Área: ");
+                        area = scanner.nextLine();
+                        if (!Administrativo.validarArea(area)) {
+                            System.out.println("La información ingresada no cumple los requisitos. Ingresa la información nuevamente");
+                        } else {
+                            System.out.println("Información ingresada correctamente");
+                            break;
+                        }
+                    }while(true);
                     System.out.print("Área: ");
                     String area = scanner.nextLine();
                     System.out.print("Experiencia previa: ");
