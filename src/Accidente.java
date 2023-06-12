@@ -118,7 +118,7 @@ public class Accidente {
     }
 
     // VALIDADORES CLASS ACCIDENTE:
-/*    // VALIDADOR IDENTIFICADOR (ID)
+    // VALIDADOR IDENTIFICADOR (ID)
     public static boolean validarIdentificador(int identificador) {
         String identificadorStr = Integer.toString(identificador);
         String patron = "^[0-9]{1,}$";
@@ -157,7 +157,7 @@ public class Accidente {
     }
     // ----------------------------------------------------------------------------------
     // GENERAMOS ID
-    private int generaId(){
+   /* private int generaId(){
         return (int) (Math.random() * 89999999) + 10000000;
     }*/
 

@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -15,6 +17,25 @@ public class Main {
         System.out.println("9. Salir");
     }
 
+    //buscar rut de cliente
+
+
+    /* public static boolean buscarRut(int rut) {
+         boolean existe = false;
+         for (Asesoria asesoria : asesorias) {
+
+             if (asesoria instanceof Cliente) {
+                 Cliente cliente = new Cliente();
+                 if (cliente.getRut() == rut) {
+                     existe = true;
+                     break;
+                 }
+             }
+         }
+
+         return existe;
+     }
+ */
     public static void main(String[] args) {
 
         Contenedor contenedor = new Contenedor();
@@ -39,6 +60,7 @@ public class Main {
                     int run = scanner.nextInt();
                     System.out.print("RUT: ");
                     int rut = scanner.nextInt();
+                    scanner.nextLine();
                     System.out.print("Apellidos: ");
                     String apellidos = scanner.nextLine();
                     System.out.print("Teléfono: ");
@@ -97,24 +119,78 @@ public class Main {
                     contenedor.almacenarAdministrativo(administrativo);
                     break;
                 case 4:
+
                     System.out.println("\nIngrese los datos Capacitación:");
+                    System.out.print("Id Capacitacion: ");
+                    int idCapacitacion = scanner.nextInt();
+
                     System.out.print("Rut Cliente: ");
-                    int clienterut = new Cliente().getRut();
-                    System.out.print("Día: ");
-                    String dia = scanner.nextLine();
-                    System.out.print("Hora: ");
-                    String hora = scanner.nextLine();
-                    System.out.print("Lugar: ");
-                    String lugar = scanner.nextLine();
-                    System.out.println("Duracion :");
-                    int duracion = scanner.nextInt();
-                    System.out.println("Cantidad de Asistentes :");
-                    int cantidadAsistentes = scanner.nextInt();
+                    int clienterut = scanner.nextInt();
+                    boolean valida = contenedor.buscarRut(clienterut);
+                    if (valida == false) {
 
-                    Capacitacion capacitacion = new Capacitacion();
-                    contenedor.almacenarCapacitacion(capacitacion);
+                        System.out.println("no existe un cliente con el rut proporcionado");
+
+
+                    } else {
+                        scanner.nextLine();
+                        String dia;
+                        do {
+                            System.out.print("Día: ");
+                            dia = scanner.nextLine();
+                            if (!Capacitacion.comprobarDia(dia)) {
+                                System.out.println(" Ingrese dia váido lunes,martes,miercoles, jueves,viernes,sabado,domingo");
+                            }
+                        } while (!Capacitacion.comprobarDia(dia));
+
+
+                        String hora;
+                        do {
+                            System.out.print("Hora: ");
+                            hora = scanner.nextLine();
+                            if (!Capacitacion.comprobarFormatoHora(hora)) {
+                                System.out.println(" Ingrese en formato hh:mm");
+                            }
+
+                        } while (!Capacitacion.comprobarFormatoHora(hora));
+
+                        String lugar;
+                        do {
+                            System.out.print("Lugar: ");
+                            lugar = scanner.nextLine();
+                            if (!Capacitacion.comprobarLugar(lugar)) {
+                                System.out.println(" Mínimo 10, máximo 50 caracteres");
+                            }
+
+                        } while (!Capacitacion.comprobarLugar(lugar));
+
+                        int duracion;
+                        do {
+                            System.out.println("Duracion :");
+                            duracion = scanner.nextInt();
+                            if (!Capacitacion.comprobarDuracion(duracion)) {
+                                System.out.println(" Máximo 70 minutos");
+                            }
+
+                        } while (!Capacitacion.comprobarDuracion(duracion));
+
+                        int cantidadAsistentes;
+                        do {
+                            System.out.println("Cantidad de Asistentes :");
+                            cantidadAsistentes = scanner.nextInt();
+                            if (!Capacitacion.comprobarCantidadAsistentes(cantidadAsistentes)) {
+                                System.out.println("mínimo 1  y Máximo 1000 Asistentes");
+                            }
+
+                        } while (!Capacitacion.comprobarCantidadAsistentes(cantidadAsistentes));
+
+                        Capacitacion cap = new Capacitacion(idCapacitacion, dia, hora, lugar, duracion, cantidadAsistentes);
+                        contenedor.almacenarCapacitacion(cap);
+
+                        break;
+                    }
+
                     break;
-
                 case 5:
                     System.out.println("Ingrese RUT de Usuario a eliminar");
                     int rutt = scanner.nextInt();
@@ -129,7 +205,9 @@ public class Main {
                     contenedor.listarUsuarios();
                     break;
                 case 8:
+                    System.out.println("----LISTAR CAPACITACIONES----");
                     contenedor.mostrarCapacitaciones();
+
                     break;
                 case 9:
                     System.out.println("Gracias por usar nuestro sistema, hasta luego");
@@ -145,4 +223,4 @@ public class Main {
     }
 
 
-    }
+}

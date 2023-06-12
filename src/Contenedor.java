@@ -50,6 +50,7 @@ public class Contenedor {
     public void mostrarCapacitaciones() {
         for (Capacitacion capacitacion : capacitaciones) {
             capacitacion.mostrarDetalle();
+
         }
     }
 
@@ -57,5 +58,19 @@ public class Contenedor {
         for (Asesoria asesoria : asesorias) {
             asesoria.analizarUsuario();
         }
+    }
+    public  boolean buscarRut(int RUN) {
+        boolean existe= false;
+        //List<Asesoria> asesorias = new ArrayList<>();
+        for (Asesoria asesoria : asesorias) {
+            if (asesoria instanceof Cliente) {
+                Cliente ccl = (Cliente) asesoria;
+                if (ccl.getRun() == RUN) {
+                    return existe = true;
+                }
+            }
+        }
+
+        return existe;
     }
 }
