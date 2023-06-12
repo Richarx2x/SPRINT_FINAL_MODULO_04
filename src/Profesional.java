@@ -32,17 +32,10 @@ public class Profesional extends Usuario {
     }
 
     //Validadores
-
-    public static boolean validarFormatoFecha(String fecha) {
+    public static boolean validarFormatoFecha(String fecha) throws ParseException {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         sdf.setLenient(false);
-
-        try {
-            sdf.parse(fecha);
-            return true;
-        } catch (ParseException e) {
-            return false;
-        }
+        return fecha.matches("\\d{2}/\\d{2}/\\d{4}") && sdf.format(sdf.parse(fecha)).equals(fecha);
     }
 
     public static boolean validarFechaVacia(String fechaIngreso) {
@@ -61,16 +54,6 @@ public class Profesional extends Usuario {
     public static boolean validarTituloVacio(String titulo) {
         return titulo != null && !titulo.isEmpty();
     }
-    //===================================================================================
-       /* @Override
-        public String toString() {
-            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-            String fechaIngresoStr = sdf.format(fechaIngreso);
-            return super.toString() + "\nTítulo: " + titulo + "\nFecha de Ingreso: " + fechaIngresoStr;
-        }
-*/
-    //===================================================================================
-
 
     @Override
     public void analizarUsuario() {

@@ -1,3 +1,4 @@
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -17,26 +18,7 @@ public class Main {
         System.out.println("9. Salir");
     }
 
-    //buscar rut de cliente
-
-
-    /* public static boolean buscarRut(int rut) {
-         boolean existe = false;
-         for (Asesoria asesoria : asesorias) {
-
-             if (asesoria instanceof Cliente) {
-                 Cliente cliente = new Cliente();
-                 if (cliente.getRut() == rut) {
-                     existe = true;
-                     break;
-                 }
-             }
-         }
-
-         return existe;
-     }
- */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ParseException {
 
         Contenedor contenedor = new Contenedor();
         Scanner scanner = new Scanner(System.in);
@@ -52,46 +34,187 @@ public class Main {
             switch (opcion) {
                 case 1:
                     System.out.println("Ingrese los datos del cliente:");
-                    System.out.print("Nombre: ");
-                    String nombre = scanner.nextLine();
-                    System.out.print("Fecha de nacimiento: ");
-                    String fechaNacimiento = scanner.nextLine();
-                    System.out.print("RUN: ");
-                    int run = scanner.nextInt();
-                    System.out.print("RUT: ");
-                    int rut = scanner.nextInt();
-                    scanner.nextLine();
-                    System.out.print("Apellidos: ");
-                    String apellidos = scanner.nextLine();
-                    System.out.print("Teléfono: ");
-                    int telefono = scanner.nextInt();
-                    System.out.print("AFP: ");
-                    String afp = scanner.nextLine();
-                    System.out.print("Sistema de salud (1: Fonasa, 2: Isapre): ");
-                    int sistemaSalud = scanner.nextInt();
-                    scanner.nextLine();
-                    System.out.print("Dirección: ");
-                    String direccion = scanner.nextLine();
-                    System.out.print("Comuna: ");
-                    String comuna = scanner.nextLine();
-                    System.out.print("Edad: ");
-                    int edad = scanner.nextInt();
-
+                    String nombre;
+                    do {
+                        System.out.print("Nombre: ");
+                        nombre = scanner.nextLine();
+                        if (!Usuario.validarNombre(nombre)) {
+                            System.out.println("La información ingresada no cumple los requisitos. Ingresa la información nuevamente");
+                        } else {
+                            System.out.println("Información ingresada correctamente");
+                            break;
+                        }
+                    } while (true);
+                    String fechaNacimiento;
+                    do {
+                        System.out.print("Fecha de nacimiento: ");
+                        fechaNacimiento = scanner.nextLine();
+                        if (!Usuario.validarFormatoFecha(fechaNacimiento)) {
+                            System.out.println("La información ingresada no cumple los requisitos. Ingresa la información nuevamente");
+                        } else {
+                            System.out.println("Información ingresada correctamente");
+                            break;
+                        }
+                    } while (true);
+                    int run;
+                    do {
+                        System.out.print("RUN: ");
+                        run = scanner.nextInt();
+                        if (!Cliente.validarRut(run)) {
+                            System.out.println("La información ingresada no cumple los requisitos. Ingresa la información nuevamente");
+                        } else {
+                            System.out.println("Información ingresada correctamente");
+                            break;
+                        }
+                    } while (true);
+                    int rut;
+                    do {
+                        System.out.print("RUT: ");
+                        rut = scanner.nextInt();
+                        if (!Cliente.validarRut(rut)) {
+                            System.out.println("La información ingresada no cumple los requisitos. Ingresa la información nuevamente");
+                        } else {
+                            System.out.println("Información ingresada correctamente");
+                            break; // Sale del ciclo do-while si el RUT es válido
+                        }
+                    } while (true);
+                    scanner.nextLine(); // probando...
+                    String apellidos;
+                    do {
+                        System.out.print("Apellidos: ");
+                        apellidos = scanner.nextLine();
+                        if (!Cliente.validarLongitudApellidos(apellidos)) {
+                            System.out.println("La información ingresada no cumple los requisitos. Ingresa la información nuevamente");
+                        } else {
+                            System.out.println("Información ingresada correctamente");
+                            break;
+                        }
+                    } while (true);
+                    int telefono;
+                    do {
+                        System.out.print("Teléfono: ");
+                        telefono = scanner.nextInt();
+                        if (!Cliente.validarTelefono(telefono)) {
+                            System.out.println("La información ingresada no cumple los requisitos. Ingresa la información nuevamente");
+                        } else {
+                            System.out.println("Información ingresada correctamente");
+                            break;
+                        }
+                    } while (true);
+                    scanner.nextLine(); // probando...
+                    String afp;
+                    do {
+                        System.out.print("AFP: ");
+                        afp = scanner.nextLine();
+                        if (!Cliente.validarLongitudAfp(afp)) {
+                            System.out.println("La información ingresada no cumple los requisitos. Ingresa la información nuevamente");
+                        } else {
+                            System.out.println("Información ingresada correctamente");
+                            break;
+                        }
+                    } while (true);
+                    int sistemaSalud;
+                    do {
+                        System.out.print("Sistema de salud (1: Fonasa, 2: Isapre): ");
+                        sistemaSalud = scanner.nextInt();
+                        if (!Cliente.validarSistemaSalud(sistemaSalud)) {
+                            System.out.println("La información ingresada no cumple los requisitos. Ingresa la información nuevamente");
+                        } else {
+                            System.out.println("Información ingresada correctamente");
+                            break;
+                        }
+                    } while (true);
+                    scanner.nextLine(); // probando...
+                    String direccion;
+                    do {
+                        System.out.print("Dirección: ");
+                        direccion = scanner.nextLine();
+                        if (!Cliente.validarLongitudDireccion(direccion)) {
+                            System.out.println("La información ingresada no cumple los requisitos. Ingresa la información nuevamente");
+                        } else {
+                            System.out.println("Información ingresada correctamente");
+                            break;
+                        }
+                    } while (true);
+                    String comuna;
+                    do {
+                        System.out.print("Comuna: ");
+                        comuna = scanner.nextLine();
+                        if (!Cliente.validarLongitudComuna(comuna)) {
+                            System.out.println("La información ingresada no cumple los requisitos. Ingresa la información nuevamente");
+                        } else {
+                            System.out.println("Información ingresada correctamente");
+                            break;
+                        }
+                    } while (true);
+                    int edad;
+                    do {
+                        System.out.print("Edad: ");
+                        edad = scanner.nextInt();
+                        if (!Cliente.validarEdad(edad)) {
+                            System.out.println("La información ingresada no cumple los requisitos. Ingresa la información nuevamente");
+                        } else {
+                            System.out.println("Información ingresada correctamente");
+                            break;
+                        }
+                    } while (true);
                     Cliente cliente = new Cliente(nombre, fechaNacimiento, run, rut, apellidos, telefono, afp, sistemaSalud, direccion, comuna, edad);
-
                     contenedor.almacenarCliente(cliente);
                     break;
                 case 2:
                     System.out.println("Ingrese los datos del profesional:");
-                    System.out.print("Nombre: ");
-                    String nombr = scanner.nextLine();
-                    System.out.print("Fecha de nacimiento: ");
-                    String fechaNacimien = scanner.nextLine();
-                    System.out.print("RUN: ");
-                    int ru = scanner.nextInt();
+                    String nombr;
+                    do {
+                        System.out.print("Nombre: ");
+                        nombr = scanner.nextLine();
+                        if (!Usuario.validarNombre(nombr)) {
+                            System.out.println("La información ingresada no cumple los requisitos. Ingresa la información nuevamente");
+                        } else {
+                            System.out.println("Información ingresada correctamente");
+                            break;
+                        }
+                    } while (true);
+
+
+
+                    String fechaNacimien;
+                    do {
+                        System.out.print("Fecha de nacimiento: ");
+                        fechaNacimien = scanner.nextLine();
+                        if (!Usuario.validarFormatoFecha(fechaNacimien)) {
+                            System.out.println("La información ingresada no cumple los requisitos. Ingresa la información nuevamente");
+                        } else {
+                            System.out.println("Información ingresada correctamente");
+                            break;
+                        }
+                    } while (true);
+
+
+                    int ru;
+                    do {
+                        System.out.print("RUT: ");
+                        ru = scanner.nextInt();
+                        if (!Cliente.validarRut(ru)) {
+                            System.out.println("La información ingresada no cumple los requisitos. Ingresa la información nuevamente");
+                        } else {
+                            System.out.println("Información ingresada correctamente");
+                            break; // Sale del ciclo do-while si el RUT es válido
+                        }
+                    } while (true);
                     scanner.nextLine();
-                    System.out.print("Título: ");
-                    String titulo = scanner.nextLine();
+                    String titulo;
+                    do {
+                        System.out.print("Titulo: ");
+                        titulo = scanner.nextLine();
+                        if (!Profesional.validarTituloVacio(titulo)) {
+                            System.out.println("minimo de 10 a 50 caracteres comom maximo, intente nuevamente");
+                        } else {
+                            System.out.println("Información ingresada correctamente");
+                            break;
+                        }
+                    } while (true);
+                    scanner.nextLine();
+
                     System.out.print("Fecha de ingreso: ");
                     String fechaIngreso = scanner.nextLine();
 
@@ -103,12 +226,23 @@ public class Main {
                 case 3:
                     System.out.println("\nIngrese los datos del administrativo:");
                     System.out.print("Nombre: ");
-                    String nom = scanner.nextLine();
+                    String nom;
+                    do {
+                        System.out.print("Nombre: ");
+                        nom = scanner.nextLine();
+                        if (!Usuario.validarNombre(nom)) {
+                            System.out.println("La información ingresada no cumple los requisitos. Ingresa la información nuevamente");
+                        } else {
+                            System.out.println("Información ingresada correctamente");
+                            break;
+                        }
+                    } while (true);
+
                     System.out.print("Fecha de nacimiento: ");
                     String fechaNacimi = scanner.nextLine();
                     System.out.print("RUN: ");
                     int runn = scanner.nextInt();
-
+                    scanner.nextLine();
                     System.out.print("Área: ");
                     String area = scanner.nextLine();
                     System.out.print("Experiencia previa: ");
@@ -128,10 +262,7 @@ public class Main {
                     int clienterut = scanner.nextInt();
                     boolean valida = contenedor.buscarRut(clienterut);
                     if (valida == false) {
-
                         System.out.println("no existe un cliente con el rut proporcionado");
-
-
                     } else {
                         scanner.nextLine();
                         String dia;

@@ -1,5 +1,6 @@
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Usuario implements Asesoria {
     private String nombre;
@@ -41,16 +42,20 @@ public class Usuario implements Asesoria {
     }
     //Validadores
     //Formato Fecha
-
-    public static boolean validarFormatoFecha(String fecha) {
+    public static int mostrarEdad(String fechaNacimiento) throws ParseException {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         sdf.setLenient(false);
-        try {
-            sdf.parse(fecha);
-            return true;
-        } catch (ParseException e) {
-            return false;
-        }
+        Date fechaNac = sdf.parse(fechaNacimiento);
+        Date fechaActual = new Date();
+        long diferenciaEnMillis = fechaActual.getTime() - fechaNac.getTime();
+        long edadEnMillis = 31557600000L; // Aproximadamente 1 año en milisegundos
+        return (int) (diferenciaEnMillis / edadEnMillis);
+    }
+
+    public static boolean validarFormatoFecha(String fecha) throws ParseException {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        sdf.setLenient(false);
+        return fecha.matches("\\d{2}/\\d{2}/\\d{4}") && sdf.format(sdf.parse(fecha)).equals(fecha);
     }
 
     public static boolean validarFechaVacia(String fechaNacimiento) {
@@ -67,24 +72,20 @@ public class Usuario implements Asesoria {
         }
         return true;
     }
-        /* public void setNombres(String nombres) {
-        this.nombres = nombres;
-/*        if (validarNombres(nombres)) {
-            this.nombres = nombres;
-        } else {System.out.println("Ingresa bien los nombres. Utiliza un total mínimo de 5 caracteres y máximo de 30 caracteres");}*/
 
     public static boolean validarNombreVacio(String nombre) {
         return nombre != null && !nombre.isEmpty();
     }
 
     //RUN
+    public static boolean validarRun(int run) {
+        return run > 0 && run < 99999999;
+    }
+    public static boolean validarRunVacio(String run) {
+        return run != null && !run.isEmpty();
+    }
     public void setRun(int run) {
-        /*        if (validarRut(int rut)) {
-            this.rut = rut;
-        } else {System.out.println("Ingresa bien el RUT. Utiliza número menor a 99999999");}*/
-        if (run < 0 || run > 99999999) {
-            throw new IllegalArgumentException("ERROR!! EL RUN DEBE SER ENTRE 0 Y 99999999!");
-        }
+
         this.run = run;
     }
 
