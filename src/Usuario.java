@@ -1,14 +1,20 @@
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 class Usuario implements Asesoria{
-    private String nombre;
+    private static String nombre;
     private String fechaNacimiento;
     private int run;
-//Accesadores y mutadores
+
+    public Usuario(String nombre, String fechaNacimiento, int run) {
+    }
+
+    public Usuario() {
+
+    }
+
+    //Accesadores y mutadores
     public String getNombre() {
         return nombre;
     }
@@ -30,47 +36,53 @@ class Usuario implements Asesoria{
     public static boolean validarRun(String run) {
         return run != null && !run.isEmpty();
     }
-//Metétodos personalizados
+    //Metétodos personalizados
     public void analizarUsuario() {
         System.out.println("Analizando al cliente: " + getNombre());
+    }
+    public static int mostrarEdad(String fechaNacimiento) throws ParseException {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        sdf.setLenient(false);
+        Date fechaNac = sdf.parse(fechaNacimiento);
+        Date fechaActual = new Date();
+
+        long diferenciaEnMillis = fechaActual.getTime() - fechaNac.getTime();
+        long edadEnMillis = 31557600000L; // Aproximadamente 1 año en milisegundos
+
+        return (int) (diferenciaEnMillis / edadEnMillis);
     }
 //Validadores
 //Formato Fecha
 
-    public static boolean validarFormatoFecha(String fecha) {
+    public static boolean validarFormatoFecha(String fecha) throws ParseException {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         sdf.setLenient(false);
-        try {
-            sdf.parse(fecha);
-            return true;
-        } catch (ParseException e) {
-            return false;
-        }
+        return fecha.matches("\\d{2}/\\d{2}/\\d{4}") && sdf.format(sdf.parse(fecha)).equals(fecha);
     }
     public static boolean validarFechaVacia(String fechaNacimiento) {
         return fechaNacimiento != null && !fechaNacimiento.isEmpty();
-
-//Nombre
-        public static boolean validarNombre(String nombre) {
-            int longitudMinima = 10;
-            int longitudMaxima = 50;
-            int longitud = nombre.length();
-            if (longitud < longitudMinima || longitud > longitudMaxima) {
-                return false;
-            }
-            return true;
+    }
+    //Nombre
+    public static boolean validarNombre(String nombre) {
+        int longitudMinima = 10;
+        int longitudMaxima = 50;
+        int longitud = nombre.length();
+        if (longitud < longitudMinima || longitud > longitudMaxima) {
+            return false;
         }
-        public static boolean validarNombreVacio(String nombre) {
-            return nombre != null && !nombre.isEmpty();
-        }
-//RUN
-        public static boolean validarRun(int run) {
-            return run > 0 && run < 99999999;
-        }
-        public static boolean validarRunVacio(String run) {
-            return run != null && !nombre.isEmpty();
-        }
-//===================================================================================
+        return true;
+    }
+    public static boolean validarNombreVacio(String nombre) {
+        return nombre != null && !nombre.isEmpty();
+    }
+    //RUN
+    public static boolean validarRun(int run) {
+        return run > 0 && run < 99999999;
+    }
+    public static boolean validarRunVacio(String run) {
+        return run != null && !run.isEmpty();
+    }
+    //===================================================================================
     @Override
     public String toString() {
         return "Nombre: " + nombre + "\n" +
@@ -88,4 +100,5 @@ public void setRun(int run) {
         public static boolean validarRun(String run) {
             return run != null && !run.isEmpty();
         }
-*/
+
+ */
