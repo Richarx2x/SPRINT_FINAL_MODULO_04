@@ -1,0 +1,87 @@
+/// validaciones en caso 2 profesional
+
+
+case 2:
+    System.out.println("Ingrese los datos del profesional:");
+    do {
+        System.out.print("Nombre: ");
+        nombre = scanner.nextLine();
+        if (!Usuario.validarNombre(nombre)) {
+            System.out.println("La información ingresada no cumple los requisitos. Ingresa la información nuevamente");
+        } else {
+            System.out.println("Información ingresada correctamente");
+            break;
+        }
+    }  while (true);
+    do {
+        System.out.print("Fecha de nacimiento: ");
+        fechaNacimiento = scanner.nextLine();
+        if (!Usuario.validarFormatoFecha(fechaNacimiento)) {
+            System.out.println("La información ingresada no cumple los requisitos. Ingresa la información nuevamente");
+        } else {
+            System.out.println("Información ingresada correctamente");
+            break;
+        }
+    } while (true);
+    do {
+        System.out.print("RUN: ");
+        run = scanner.nextInt();
+        if (!Cliente.validarRut(run)) {
+            System.out.println("La información ingresada no cumple los requisitos. Ingresa la información nuevamente");
+        } else {
+            System.out.println("Información ingresada correctamente");
+            break;
+        }
+    } while (true);
+    String titulo;
+    do {
+        System.out.print("Titulo: ");
+        titulo = scanner.nextLine();
+        if (!Profesional.validarTituloVacio(titulo)) {
+            System.out.println("minimo de 10 a 50 caracteres comom maximo, intente nuevamente");
+        } else {
+            System.out.println("Información ingresada correctamente");
+            break;
+        }
+    } while (true);
+    scanner.nextLine();
+    String fechaIngreso;
+    do {
+        System.out.print("Fecha de ingreso: ");
+        fechaIngreso = scanner.nextLine();
+        if (!Profesional.validarFechaVacia(fechaIngreso)) {
+            System.out.println("formato de fecha no valido intente nuevamente");
+        } else {
+            System.out.println("Información ingresada correctamente");
+            break;
+        }
+    } while (true);
+    Profesional profesional = new Profesional(nombre, fechaNacimiento, run, titulo, fechaIngreso);
+    contenedor.almacenarProfesional(profesional);
+    break;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
